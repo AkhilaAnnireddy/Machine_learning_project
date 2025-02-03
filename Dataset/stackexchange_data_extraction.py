@@ -5,55 +5,33 @@ import csv
 import time
 from time import strftime, gmtime
 
-# Stack Exchange API key
 api_key = "rl_BxonUEYUdN4zs79GjPqiyQMN2"
-
-# Initialize page number
 i = 1
-
-# Folder names for saving JSON and CSV files
 json_folder = "users_json"
 csv_folder = "users_csv"
 
-# Function to create a folder if it doesn't already exist
 def create_folder(name):
     if not os.path.exists(name):
         os.makedirs(name)
-
-# Create folders for saving files
 create_folder(json_folder)
 create_folder(csv_folder)
 
-# Fetch data and save to JSON and CSV files
 while True:
-    # Build the API URL with pagination
     search_url = f"https://api.stackexchange.com/2.2/users?key={api_key}&page={i}&pagesize=100&order=desc&sort=reputation&site=stackoverflow"
     r = requests.get(search_url, stream=True)
-
-    # Check if the API call was successful
     if r.status_code == 200:
         rec = r.json()
-
-        # Stop the loop if there are no more pages
         if "items" not in rec or not rec["items"]:
             print("No more data to fetch. Exiting loop.")
             break
-
-        # Generate a unique filename using the current timestamp
         timestamp = strftime("%Y-%m-%d-%H-%M-%S", gmtime())
         json_filename = os.path.join(json_folder, f"{timestamp}_page_{i}.json")
         csv_filename = os.path.join(csv_folder, f"{timestamp}_page_{i}.csv")
-
-        # Save JSON response to a file
         with open(json_filename, 'w', encoding="utf-8") as f:
             json.dump(rec, f, indent=4)
         print(f"Data for page {i} saved to {json_filename}")
-
-        # Save to CSV file
         with open(csv_filename, mode="w", newline="", encoding="utf-8") as file:
             writer = csv.writer(file)
-
-            # Extract headers dynamically from user data
             headers = [
                 "user_id", "display_name", "reputation", "location", "website_url",
                 "profile_image", "user_type", "link", "account_id", "is_employee",
@@ -63,19 +41,14 @@ while True:
                 "badge_bronze", "badge_silver", "badge_gold", "collective_names"
             ]
             writer.writerow(headers)
-
             for user in rec["items"]:
-                # Extracting badge counts
                 badge_counts = user.get("badge_counts", {})
                 badge_bronze = badge_counts.get("bronze", 0)
                 badge_silver = badge_counts.get("silver", 0)
                 badge_gold = badge_counts.get("gold", 0)
-
-                # Extracting collective names
                 collectives = user.get("collectives", [])
                 collective_names = [c["collective"]["name"] for c in collectives if "collective" in c]
                 collective_names_str = ", ".join(collective_names) if collective_names else ""
-
                 writer.writerow([
                     user.get("user_id", ""),
                     user.get("display_name", ""),
@@ -99,14 +72,9 @@ while True:
                     badge_bronze, badge_silver, badge_gold,
                     collective_names_str
                 ])
-
         print(f"Data for page {i} saved to {csv_filename}")
-
-        # Increment the page number for the next request
         i += 1
-
-        # Pause between API requests to avoid hitting the rate limit
-        time.sleep(3)
+        time.sleep(3)  # Pause between API requests to avoid hitting the rate limit
     else:
         print(f"Failed to fetch data for page {i}. HTTP Status Code: {r.status_code}")
         break

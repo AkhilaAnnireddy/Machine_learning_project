@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stack Overflow Profile Analysis</title>
+    <title>Overflowytics</title>
     <link rel="stylesheet" href="./Website/style.css">
 
     <!-- Google Font -->
@@ -230,14 +230,8 @@
         menuLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-
-                // Get target section from data attribute
                 const target = link.getAttribute('data-target');
-
-                // Hide all sections and remove active class
                 sections.forEach(section => section.classList.remove('active'));
-
-                // Show the target section
                 document.getElementById(target).classList.add('active');
             });
         });

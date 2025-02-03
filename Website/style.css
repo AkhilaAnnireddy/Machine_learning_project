@@ -22,7 +22,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Navbar styles */
 .navbar {
     background-color: #111;
     color: var(--color-highlight);
@@ -44,7 +43,6 @@ a:hover {
     font-weight: bold;
 }
 
-/* Menu styles */
 .menu {
     list-style: none;
     display: flex;
@@ -56,7 +54,6 @@ a:hover {
     margin-left: 20px;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .menu {
         flex-direction: column;
@@ -74,7 +71,6 @@ a:hover {
     }
 }
 
-/* Content styles */
 .content {
     margin: 80px auto 20px auto;
     width: 60%;
@@ -90,19 +86,17 @@ p {
     line-height: 1.6;
 }
 
-/* Image styles */
 .profile-image {
     display: block;
-    margin: 20px auto;             /* Center the image */
+    margin: 20px auto;            
     border: 2px solid var(--color-highlight);
     border-radius: 10px;
-    max-width: 90%;                /* Ensure image doesn't exceed page width */
-    height: 400px;                 /* Consistent height for all images */
-    object-fit: cover;             /* Ensure images maintain aspect ratio and fit */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a soft shadow for a polished look */
+    max-width: 90%;               
+    height: 400px;                
+    object-fit: cover;            
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Section visibility */
 .page-section {
     display: none;
 }
