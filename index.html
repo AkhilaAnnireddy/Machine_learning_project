@@ -92,12 +92,12 @@
                 </li>
             </ul>
             <img src="Website/assets/api_data_extrcation_log.png" alt="extraction log" class="profile-image"/>  
-            <p>Python Script for Data Extraction - <a href="Dataset/stackexchange_data_extraction.py" target="_blank">Data Extraction Script</a></p>
+            <p>Python Script for Data Extraction - <a href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/stackexchange_data_extraction.py" target="_blank">Data Extraction Script</a></p>
 
             <h1>Data Preparation</h1>
             <p>After extracting the data from the Stack Exchange API, the next crucial step was data preparation. Since the API returned multiple CSV files, each containing a batch of user records, a Python script was developed to merge these individual files into a single dataset. The script scans a directory containing the CSV files, reads each file into a Pandas DataFrame, and then concatenates all DataFrames into one comprehensive dataset. This merged file, containing approximately 100,000 records, provides a centralized and organized dataset that will be used for further analysis and machine learning model training.</p>
             <p>This step ensures that all relevant data is consolidated, allowing for efficient analysis without the need to repeatedly access or process multiple smaller files. Proper data preparation is essential to eliminate redundancy, handle errors, and structure data in a way that optimizes subsequent data exploration and model development.</p>
-            <p>Python Script for Data Preparation - <a href="Dataset/data_merging_script.py" target="_blank">Data Preparation Script</a></p>
+            <p>Python Script for Data Preparation - <a href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/data_merging_script.py" target="_blank">Data Preparation Script</a></p>
             <h1>Data Cleaning</h1>
             <h3>Importance of Data Cleaning</h3>
             <p>Data cleaning is an essential step in preparing data for analysis and model training. Real-world data often contains missing values, inconsistencies, and errors, which can lead to unreliable and inaccurate insights. Unclean data negatively impacts the performance of machine learning models, leading to bias and misleading results. By thoroughly cleaning the data, we ensure its quality and reliability, allowing models to make accurate predictions. Effective data cleaning helps to minimize errors, improves model performance, and provides meaningful insights during data analysis.</p>
@@ -106,7 +106,7 @@
                 Duplicate records were identified and removed to ensure data integrity. Derived features were added to enhance analytical capabilities, including account_age_years, calculated from the creation_date column to analyze user engagement trends over time.
                 Data type conversions were performed to standardize formats. Date fields such as creation_date, last_modified_date, and last_access_date stored in epoch format were converted to datetime format for time-based analysis.
                 These steps resulted in a clean, structured dataset, free of missing values, duplicates, and data type inconsistencies. The refined dataset is prepared for exploratory analysis and machine learning model training.</p>
-                <p>Python Script for Data Cleaning - <a href="Datacleaning/Data_cleaning.ipynb" target="_blank">Data Preparation Script</a></p>
+                <p>Python Code for Data Cleaning - <a href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb" target="_blank">Data Cleaning Code</a></p>
             <h1>Data Visualization</h1>
             <h4>Visualization 1: Total Badge Count by Type</h4>
                   <img class="profile-image" src="Website/assets/Total_Badge_Count_by_Type.png" alt="Visualisation-1">
@@ -206,6 +206,7 @@
                         <li> - <b>Insight:</b> There is a steady, minimal user access trend until late January, followed by a sharp spike around January 29th, potentially due to a major event or system update, before the user count declines quickly after.</li> 
                     </ol>
               </p>
+              <p>Python Code for Data Visualization - <a href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb" target="_blank">Data Visualization Code</a></p>
         </section>
 
         <!-- Models Section -->
