@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack Overflow Profile Analysis</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="title">Stack Overflow Profile Analysis</div>
+        <ul class="menu">
+            <li><a href="#" data-target="introduction">Introduction</a></li>
+            <li><a href="#" data-target="data-prep">Data Prep</a></li>
+            <li><a href="#" data-target="models">Models</a></li>
+            <li><a href="#" data-target="conclusion">Conclusion</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="content">
+        <!-- Introduction Section -->
+        <section id="introduction" class="page-section active">
+            <h1>Introduction</h1>
+            <p>Stack Overflow is the world's largest and most popular online community for developers and programmers to learn, share knowledge, and collaborate. Founded in 2008 by Jeff Atwood and Joel Spolsky, the platform was designed to address the challenges developers face when searching for accurate programming solutions. As a question-and-answer platform, Stack Overflow allows users to receive high-quality, peer-reviewed answers on a vast range of programming languages, frameworks, and tools. Developers earn reputation points and badges through valuable contributions, creating a system of credibility and trust within the community.</p>
+            <img src="assets/stack_iver_flow_logo1.jpeg" alt="Stack Overflow Logo" class="profile-image"/>          
+            <p>With over 22 million questions and hundreds of millions of monthly users, Stack Overflow has become a cornerstone of the software development industry. It empowers programmers to solve complex problems efficiently and fosters a culture of continuous learning and collaboration. Many developers turn to Stack Overflow as their first stop when debugging issues, exploring new concepts, or advancing their skills. Its mission to "help developers write the script of the future" highlights the platform's pivotal role in shaping technology innovation.</p>
+            <p>However, the rise of AI tools like ChatGPT has introduced new challenges to Stack Overflow's ecosystem. These tools provide instant, conversational assistance, often generating code snippets, debugging suggestions, and technical explanations without the need to post questions. This shift has impacted user behavior, leading to decreased question volume on the platform. While AI tools offer rapid solutions, they sometimes lack accuracy, context, and the collaborative refinement that Stack Overflow's community-driven model provides. As a result, Stack Overflow remains indispensable for more nuanced and peer-validated solutions that go beyond immediate AI-generated help.</p>
+            <img src="assets/sto_vs_chatpgt.webp" alt="Impact of AI on Stack Overflow" class="profile-image"/>   
+
+            <h1>Project Motivation</h1>
+            <p>This project aims to analyze Stack Overflow user data and activity using machine learning techniques to uncover patterns and predict future trends. By applying machine learning models, we seek to provide insights on user engagement, activity trends, and future challenges Stack Overflow may face in maintaining and expanding its user base. The insights gained can help the platform implement strategies to retain existing users and attract new ones, ensuring its continued relevance in a rapidly evolving technological landscape.</p>
+ 
+            <h1>Objectives</h1>
+            <p>To gain insights into user engagement and activity on Stack Overflow, we aim to explore and answer the following research questions through data analysis and machine learning techniques:</p>
+            <ol>
+                <li>Which user types (e.g., experienced, new, or moderators) are most active on Stack Overflow?</li>
+                <li>What factors influence user reputation growth over time?</li>
+                <li>Which tags or topics lead to the highest engagement (views, upvotes, answers)?</li>
+                <li>How does user activity (e.g., number of posts, last access date) change over time?</li>
+                <li>What types of users are more likely to leave the platform (low engagement, declining activity, etc.)?</li>
+                <li>Which types of questions (based on topic, length, or complexity) are most likely to receive answers?</li>
+                <li>How does the time of posting (day of the week, time of day) impact the likelihood of receiving quick responses?</li>
+                <li>What are the common characteristics of highly upvoted or highly answered questions?</li>
+                <li>How do AI tools influence the frequency and type of questions being asked?</li>
+                <li>Which tags or topics have seen a decline in user engagement due to the rise of AI tools?</li>
+                <li>What user behaviors are predictive of long-term retention and active participation on the platform?</li>
+                <li>Which regions or locations (if location data is available) have the highest or lowest participation rates on Stack Overflow?</li>
+                <li>What factors (e.g., reputation changes, badges earned) predict whether a user will become a top contributor?</li>
+                <li>How can Stack Overflow tailor its platform to encourage users to stay engaged despite competition from AI tools?</li>
+                <li>How might user activity and engagement trends evolve over the next few years given the current usage patterns and the increasing adoption of AI-based coding tools?</li>
+            </ol>
+        </section>
+
+        <!-- Data Prep Section -->
+        <section id="data-prep" class="page-section">
+            <h1>Data Collection</h1>
+            <p>Effective data collection is crucial in any data-driven project, particularly when using machine learning to analyze trends and make predictions. Reliable and high-quality data enables accurate model training, which, in turn, provides better insights and predictions. In this project, user data from Stack Overflow was collected to analyze user engagement, activity trends, and platform growth patterns. Since the platform is large and continuously evolving, accessing up-to-date data through manual extraction would be inefficient and error-prone. Instead, APIs (Application Programming Interfaces) provide a systematic way to collect structured data in real-time.</p>
+            <p>APIs allow automated access to vast datasets while ensuring that data retrieval follows the platform's usage policies and structure. By using Stack Exchange's API, this project leveraged a reliable method to retrieve relevant user information, including reputation, location, activity dates, and earned badges. This API offers endpoints that provide data in a machine-readable JSON format, making it ideal for large-scale data collection and processing.</p>
+            <p>This automated approach ensures that the data collection process is efficient, scalable, and capable of handling large volumes of user data from Stack Overflow. By using APIs, the project can be easily updated with fresh data in the future, enabling continuous analysis and improvement of machine learning models.</p>
+            <p>The script used for data collection follows a structured approach:</p>
+            <ul>
+                <li>
+                    <strong>API Request and Pagination:</strong> 
+                    The script builds API requests to fetch user data in batches of 100 profiles per request. It supports pagination to iterate through multiple pages of data, starting from page 1 and continuing until all available data is retrieved.
+                </li>
+                <li>
+                    <strong>Data Saving:</strong> 
+                    The response data from each API call is saved both as a JSON file and a CSV file for analysis. The JSON file stores the complete API response, preserving all details, while the CSV file organizes key fields in tabular format.
+                </li>
+                <li>
+                    <strong>Dynamic Extraction:</strong> 
+                    The script dynamically extracts important fields, including user ID, display name, reputation, location, profile image, and badge counts. It also compiles information about collectives (groups or communities) the users may belong to.
+                </li>
+                <li>
+                    <strong>Folder and File Organization:</strong> 
+                    To keep the collected data organized, the script creates separate folders for JSON and CSV files. Each file is named using a timestamp and page number, ensuring easy identification and retrieval.
+                </li>
+                <li>
+                    <strong>Rate Limiting:</strong> 
+                    To prevent exceeding the API's request limits, the script includes a short delay between requests. This helps maintain compliance with API usage guidelines while avoiding service interruptions.
+                </li>
+                <li>
+                    <strong>Error Handling:</strong> 
+                    The script verifies the success of each API call by checking the HTTP status code. If a request fails, an error message is displayed, and the data collection loop terminates gracefully. The loop also ends when there are no more pages of data to fetch.
+                </li>
+            </ul>
+            <img src="assets/api_data_extrcation_log.png" alt="extraction log" class="profile-image"/>  
+            <p>Python Script for Data Extraction - <a href="assets/scripts/data_extraction.py" target="_blank">Data Extraction Script</a></p>
+
+            <h1>Data Preparation</h1>
+            <p>After extracting the data from the Stack Exchange API, the next crucial step was data preparation. Since the API returned multiple CSV files, each containing a batch of user records, a Python script was developed to merge these individual files into a single dataset. The script scans a directory containing the CSV files, reads each file into a Pandas DataFrame, and then concatenates all DataFrames into one comprehensive dataset. This merged file, containing approximately 100,000 records, provides a centralized and organized dataset that will be used for further analysis and machine learning model training.</p>
+            <p>This step ensures that all relevant data is consolidated, allowing for efficient analysis without the need to repeatedly access or process multiple smaller files. Proper data preparation is essential to eliminate redundancy, handle errors, and structure data in a way that optimizes subsequent data exploration and model development.</p>
+            <p>Python Script for Data Preparation - <a href="Dataset/data_merging_script.py" target="_blank">Data Preparation Script</a></p>
+            <h1>Data Cleaning</h1>
+            <h3>Importance of Data Cleaning</h3>
+            <p>Data cleaning is an essential step in preparing data for analysis and model training. Real-world data often contains missing values, inconsistencies, and errors, which can lead to unreliable and inaccurate insights. Unclean data negatively impacts the performance of machine learning models, leading to bias and misleading results. By thoroughly cleaning the data, we ensure its quality and reliability, allowing models to make accurate predictions. Effective data cleaning helps to minimize errors, improves model performance, and provides meaningful insights during data analysis.</p>
+            <p>The data cleaning process began with analyzing the dataset structure, including columns, data types, and sample data points. Both categorical and numerical fields were reviewed to identify data points requiring further cleaning.
+                Missing values were assessed by calculating the percentage of missing entries per column. Columns with excessively high missing values, such as collective_names, were dropped due to limited analytical value. Columns with moderate missing data, such as website_url and accept_rate, were handled appropriately. For numerical columns like accept_rate, missing values were filled with the median. Missing values in categorical columns like display_name were replaced with a unique string pattern, username_{user_id}.
+                Duplicate records were identified and removed to ensure data integrity. Derived features were added to enhance analytical capabilities, including account_age_years, calculated from the creation_date column to analyze user engagement trends over time.
+                Data type conversions were performed to standardize formats. Date fields such as creation_date, last_modified_date, and last_access_date stored in epoch format were converted to datetime format for time-based analysis.
+                These steps resulted in a clean, structured dataset, free of missing values, duplicates, and data type inconsistencies. The refined dataset is prepared for exploratory analysis and machine learning model training.</p>
+                <p>Python Script for Data Cleaning - <a href="Datacleaning/Data_cleaning.ipynb" target="_blank">Data Preparation Script</a></p>
+            <h1>Data Visualization</h1>
+        </section>
+
+        <!-- Models Section -->
+        <section id="models" class="page-section">
+            <h1>Models</h1>
+            <p>All the required model implementations and results will be added in future milestones.
+            </p>
+        </section>
+
+        <!-- Conclusion Section -->
+        <section id="conclusion" class="page-section">
+            <h1>Conclusion</h1>
+            <p>The conclusion will be added in future milestones.</p>
+        </section>
+    </div>
+
+    <!-- JavaScript to handle section switching -->
+    <script>
+        const menuLinks = document.querySelectorAll('.menu a');
+        const sections = document.querySelectorAll('.page-section');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Get target section from data attribute
+                const target = link.getAttribute('data-target');
+
+                // Hide all sections and remove active class
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Show the target section
+                document.getElementById(target).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
