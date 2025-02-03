@@ -92,11 +92,14 @@ p {
 
 /* Image styles */
 .profile-image {
-    margin: 20px auto;
+    display: block;
+    margin: 20px auto;             /* Center the image */
     border: 2px solid var(--color-highlight);
     border-radius: 10px;
-    max-width: 100%;
-    height: auto;
+    max-width: 90%;                /* Ensure image doesn't exceed page width */
+    height: 400px;                 /* Consistent height for all images */
+    object-fit: cover;             /* Ensure images maintain aspect ratio and fit */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a soft shadow for a polished look */
 }
 
 /* Section visibility */
@@ -107,3 +110,5 @@ p {
 .page-section.active {
     display: block;
 }
+
+li { list-style: none; }
