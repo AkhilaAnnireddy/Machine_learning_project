@@ -115,3 +115,33 @@ p {
 }
 
 li { list-style: none; }
+
+/* Internal Tab Styling */
+.internal-tabs {
+    display: flex;
+    border-bottom: 2px var(--color-highlight);
+    margin-bottom: 15px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--color-highlight);
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    border-bottom: 1px solid var(--color-highlight);
+    font-weight: bold;
+}
+
+.model-content {
+    display: none;
+}
+
+.model-content.active {
+    display: block;
+}
