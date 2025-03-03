@@ -1752,30 +1752,33 @@
           </p>
           <h1>Implementation</h1>
           <p>
-            Association Rule Mining (ARM) was implemented using the Apriori
-            algorithm to identify meaningful relationships within the dataset.
-            Frequent itemsets were extracted with a minimum support of 5%,
-            ensuring only significant patterns were considered. Association
-            rules were then generated using the lift metric with a threshold of
-            1.0, highlighting strong connections between attributes.
+            Association Rule Mining (ARM) was applied using the Apriori
+            algorithm to uncover meaningful relationships within the dataset.
+            The process began with identifying frequent itemsets that appeared
+            in at least 5% of transactions, ensuring that only significant
+            patterns were considered. Once the frequent itemsets were
+            established, association rules were generated based on the lift
+            metric, with a minimum threshold of 1.0, ensuring that the
+            discovered relationships held strong and valuable connections.
           </p>
           <p>
-            The extracted rules revealed key insights, such as users with many
-            bronze badges almost always having a high reputation and older
-            accounts being strongly linked to higher reputation. Additionally,
-            users with high acceptance rates often exhibited high reputation,
-            though this relationship was less frequent. A network visualization
-            further illustrated these associations, showing how reputation,
-            account longevity, and badge accumulation played a central role in
-            user engagement.
+            The extracted rules provided valuable insights into user behavior.
+            Users with many bronze badges almost always had high reputation,
+            emphasizing that active participation contributes to credibility.
+            Similarly, older accounts were strongly linked to high reputation,
+            indicating that platform longevity plays a key role in building user
+            trust. Another notable pattern revealed that users with high
+            acceptance rates had a moderate likelihood of having high
+            reputation, highlighting that consistent contribution acceptance
+            influences recognition.
           </p>
           <p>
-            To refine insights, rules were ranked based on support, confidence,
-            and lift, with the top 15 rules selected for each metric. This
-            helped in understanding the most impactful patterns. The findings
-            provide valuable insights for recommendation systems, customer
-            segmentation, and user behavior analysis, allowing for a data-driven
-            approach to enhancing engagement and decision-making.
+            To further refine these insights, rules were ranked based on
+            support, confidence, and lift, with the top 15 rules selected for
+            each metric. This ranking helped filter out weaker patterns and
+            highlighted the most impactful associations. These insights can be
+            leveraged for recommendation systems, user engagement strategies,
+            and customer segmentation, allowing for data-driven decision-making.
           </p>
           <h3>Association Rules Network Visualization</h3>
           <img
@@ -1785,61 +1788,85 @@
           />
           <p>
             The Association Rules Network Graph visually represents the
-            connections between different user attributes based on frequent
-            patterns. Each node in the graph represents an attribute, while the
-            edges show strong relationships between them.
+            discovered relationships between different user attributes. Each
+            node in the graph represents an attribute, while edges between nodes
+            indicate a strong association between them.
           </p>
           <p>
-            The graph highlights that high reputation is closely linked to many
-            badges and old accounts, suggesting that users who have been active
-            for a long time and earned multiple badges tend to gain credibility.
-            Similarly, a high acceptance rate is associated with many silver
-            badges, indicating that users with consistently accepted
-            contributions receive more recognition.
+            The visualization clearly highlights that high reputation is
+            strongly connected to many badges and old accounts, suggesting that
+            long-term engagement and earning multiple badges contribute to user
+            credibility. Additionally, a high acceptance rate is linked to many
+            silver badges, indicating that users whose contributions are
+            frequently accepted tend to receive greater recognition.
           </p>
           <p>
-            The layout of the graph forms distinct clusters, showing how
-            experience, engagement, and recognition work together. This
-            visualization helps in understanding user behavior, identifying key
-            influencers, and optimizing engagement strategies on the platform.
+            The network structure forms distinct clusters, showing how
+            engagement, experience, and recognition are interconnected. This
+            visualization provides an intuitive understanding of user behavior,
+            helping platforms identify key influencers, optimize engagement
+            strategies, and enhance recommendation systems.
           </p>
 
           <h1>Results</h1>
           <p>
-            The Association Rule Mining (ARM) analysis uncovered key insights
-            into user engagement, reputation, and behavior patterns. The
-            extracted association rules demonstrated strong relationships
-            between user attributes, particularly reputation, badges, and
-            account age. Users with many bronze badges were almost always
-            associated with high reputation, while older accounts had a strong
-            connection to higher credibility. Additionally, users with a high
-            acceptance rate tended to earn more silver badges, reinforcing the
-            idea that consistent, high-quality contributions lead to
+            Association Rule Mining was applied using the Apriori algorithm to
+            uncover relationships between different user attributes. Frequent
+            itemsets were extracted with a minimum support threshold of 5%,
+            ensuring that only the most significant patterns were considered.
+            The association rules were then generated based on the lift metric,
+            with a minimum threshold of 1.0, ensuring that the discovered
+            patterns had meaningful relationships.
+          </p>
+          <p>
+            The extracted rules provided key insights into user behavior. A
+            strong relationship was observed between users with many bronze
+            badges and high reputation, indicating that reputation grows with
+            increased participation. Similarly, users with old accounts were
+            highly likely to have high reputation, showing that longer platform
+            engagement contributes to credibility. Additionally, users with a
+            high acceptance rate had a moderate likelihood of possessing a high
+            reputation, suggesting that accepted contributions play a role in
             recognition.
           </p>
           <p>
-            The top 15 association rules were ranked based on support,
-            confidence, and lift, helping identify the most significant
-            patterns. The network visualization further highlighted these
-            associations, forming clusters that reveal how experience,
-            engagement, and recognition interact to shape user activity.
+            To refine these insights, the rules were ranked based on support,
+            confidence, and lift, selecting the top 15 rules for each metric.
+            These rankings helped in identifying the strongest relationships,
+            ensuring that only the most impactful patterns were retained.
           </p>
           <p>
-            These insights are valuable for optimizing recommendation systems,
-            improving user engagement strategies, and personalizing user
-            experiences. The findings suggest that active participation and
-            consistent quality contributions play a crucial role in building a
-            strong reputation over time. By transforming numerical attributes
-            into binary categories, the dataset was efficiently processed,
-            making it easier to extract meaningful patterns.
+            A network visualization was created to represent these relationships
+            graphically. The visualization illustrated the key factors
+            influencing reputation, engagement, and recognition, making it
+            easier to understand the underlying connections in user behavior.
+          </p>
+          <h2>Conclusion</h2>
+          <p>
+            Understanding how users engage with a platform is crucial for
+            improving user experience, recognition systems, and retention
+            strategies. The findings from Association Rule Mining highlight the
+            importance of engagement, consistency, and contribution quality in
+            building reputation and credibility. Just like in real-world
+            communities where trust is earned over time, users on digital
+            platforms also gain recognition through continued participation and
+            meaningful contributions.
           </p>
           <p>
-            Overall, this study demonstrates how ARM can uncover hidden trends,
-            predict future engagement, and support data-driven decision-making.
-            The extracted rules and visualizations provide a clear foundation
-            for enhancing platform interactions, identifying key influencers,
-            and improving user satisfaction through personalized recommendations
-            and strategic optimizations.
+            These insights can be applied in various ways. Platforms can use
+            these patterns to design better reward systems, recommend relevant
+            content, and identify active users for engagement programs.
+            Businesses can leverage similar techniques for customer
+            segmentation, personalized recommendations, and targeted marketing
+            strategies.
+          </p>
+          <p>
+            By understanding these patterns, platforms can create a more
+            engaging and rewarding experience for users, fostering stronger
+            communities and encouraging meaningful contributions. The
+            implementation of Association Rule Mining not only enhances
+            decision-making but also provides a data-driven approach to
+            improving engagement and user satisfaction.
           </p>
           <p>
             Link to complete code -
