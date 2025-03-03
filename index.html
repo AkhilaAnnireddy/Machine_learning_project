@@ -26,6 +26,7 @@
         Overflowytics
       </div>
       <ul class="menu">
+        <li><a href="#" data-target="home">Home</a></li>
         <li><a href="#" data-target="introduction">Introduction</a></li>
         <li><a href="#" data-target="data-prep">Data Prep</a></li>
         <li><a href="#" data-target="models">Models</a></li>
@@ -35,8 +36,10 @@
 
     <!-- Page Content -->
     <div class="content">
+      <!-- Home Section -->
+      <section id="home" class="page-section active"></section>
       <!-- Introduction Section -->
-      <section id="introduction" class="page-section active">
+      <section id="introduction" class="page-section">
         <h1>Stack Overflow: A Pillar of the Developer Community</h1>
         <p>
           Stack Overflow is the world's largest and most prominent platform
@@ -697,74 +700,145 @@
         <!-- PCA Content -->
         <div id="pca" class="model-content active">
           <h1>Overview</h1>
+
           <h2>Principal Component Analysis (PCA)</h2>
           <p>
             Principal Component Analysis (PCA) is a widely used technique for
             dimensionality reduction in data analysis and machine learning. It
-            helps simplify complex datasets by transforming them into a smaller
-            set of meaningful features while retaining most of the original
-            information. PCA works by identifying the directions, called
-            principal components, along which the data varies the most. By
-            projecting the dataset onto these new axes, PCA reduces redundancy
-            and makes it easier to analyze patterns, visualize high-dimensional
-            data, and improve computational efficiency.
+            simplifies high-dimensional datasets by transforming them into a
+            smaller set of meaningful features while preserving most of the
+            original information. PCA works by identifying the directions,
+            called <strong>principal components</strong>, along which the data
+            varies the most. By projecting the dataset onto these new axes, PCA
+            reduces redundancy, improves computational efficiency, and makes
+            pattern analysis easier.
           </p>
           <p>
-            PCA is particularly useful in scenarios where datasets contain many
-            correlated features that add complexity without providing additional
-            insights. By converting the original variables into a smaller number
-            of uncorrelated principal components, PCA ensures that only the most
-            important patterns are preserved. This technique is widely applied
-            in fields such as image processing, finance, genetics, and
-            recommendation systems, where high-dimensional data can be
-            challenging to interpret and process effectively.
+            PCA is particularly beneficial when datasets contain
+            <strong>correlated features</strong> that add complexity without
+            providing additional insights. By converting the original variables
+            into
+            <strong
+              >a smaller number of uncorrelated principal components</strong
+            >, PCA ensures that only the most important patterns are retained.
+            This technique is widely applied in
+            <strong
+              >image processing, finance, genetics, and recommendation
+              systems</strong
+            >, where high-dimensional data can be challenging to interpret
+            effectively.
           </p>
 
-          <h3>Principal Components</h3>
+          <h2>Principal Components</h2>
           <p>
-            Principal components are the new features created by PCA that
-            capture the maximum variance in the dataset. The first principal
-            component (PC1) represents the direction with the most variation,
-            meaning it retains the highest amount of information from the
-            original data. The second principal component (PC2) captures the
-            second-highest variance while remaining orthogonal (uncorrelated) to
-            the first, ensuring that it provides unique information. Each
-            subsequent component continues this pattern, contributing
-            progressively less variance. By selecting only the top principal
-            components, PCA reduces the number of dimensions while maintaining
-            the dataset's essential structure, allowing for more efficient
-            analysis and interpretation.
+            Principal components are the <strong>new features</strong> created
+            by PCA that capture the <strong>maximum variance</strong> in the
+            dataset.
+          </p>
+          <ul>
+            <li>
+              <strong>First Principal Component (PC1):</strong> Represents the
+              direction with the most variation, retaining the highest amount of
+              information from the original data.
+            </li>
+            <li>
+              <strong>Second Principal Component (PC2):</strong> Captures the
+              second-highest variance while remaining uncorrelated with the
+              first.
+            </li>
+            <li>
+              <strong>Subsequent Components:</strong> Each additional component
+              captures progressively less variance, ensuring that only the most
+              essential structure of the dataset is retained.
+            </li>
+          </ul>
+          <p>
+            By selecting only the <strong>top principal components</strong>, PCA
+            reduces the number of dimensions while preserving essential
+            patterns, making analysis more efficient and interpretable.
           </p>
 
-          <h2>Why PCA ?</h2>
+          <h2>Variance Explained by Principal Components</h2>
           <p>
-            In this project, Principal Component Analysis (PCA) is applied to
-            analyze user engagement patterns on Stack Overflow by reducing the
-            dataset's dimensionality while preserving critical information. The
-            dataset contains various numerical attributes such as user
-            reputation, badge counts, accept rates, and activity levels, which
-            can be highly correlated. Direct analysis of such high-dimensional
-            data can be computationally expensive and difficult to visualize. By
-            applying PCA, the dataset is transformed into a smaller set of
-            principal components that retain the highest variance, helping to
-            remove redundancy and improve efficiency. This allows for better
-            interpretation of key factors driving user engagement while reducing
-            noise from less significant features.
+            To determine how many components are needed,
+            <strong>variance explained plots</strong> are used:
+          </p>
+
+          <h3>Scree Plot (Variance Explained per Component)</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cumulative_variance_2d_pca.png"
+            alt="Scree Plot"
+          />
+          <p>
+            The scree plot shows how much variance each principal component
+            captures. The
+            <strong>first few components retain most of the variance</strong>,
+            while additional components contribute less.
+          </p>
+
+          <h3>Cumulative Variance Plot</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cummulative_variance_vs_components.png"
+            alt="Cumulative Variance Plot"
+          />
+          <p>
+            This graph indicates the
+            <strong>cumulative variance retained</strong> as more components are
+            added. In this project, the
+            <strong
+              >first X principal components capture at least 95% of the
+              variance</strong
+            >, making them sufficient for further analysis.
+          </p>
+
+          <h2>Why PCA?</h2>
+          <p>
+            In this project, PCA is applied to analyze
+            <strong>user engagement patterns on Stack Overflow</strong> by
+            <strong>reducing the dataset’s dimensionality</strong> while
+            preserving crucial information. The dataset contains
+            <strong
+              >user reputation, badge counts, accept rates, and activity
+              levels</strong
+            >, which are often <strong>highly correlated</strong>. Direct
+            analysis of such high-dimensional data is both computationally
+            expensive and difficult to visualize.
           </p>
           <p>
-            The primary objective of PCA in this project is to enhance data
-            visualization and model performance by selecting only the most
-            informative components. The variance explained by each principal
-            component is analyzed to determine the optimal number of dimensions
-            required to retain at least 95% of the original dataset’s
-            information while minimizing complexity. This reduced representation
-            of the data is useful for clustering users into behavioral groups,
-            identifying engagement trends, and improving further machine
-            learning tasks such as predicting user activity or retention. By
-            leveraging PCA, the project ensures that insights derived from Stack
-            Overflow's data are both computationally efficient and highly
-            interpretable.
+            By applying PCA, the dataset is transformed into a smaller set of
+            principal components that
+            <strong>retain the highest variance</strong>, helping to
+            <strong>remove redundancy and improve efficiency</strong>. This
+            allows for
+            <strong
+              >better interpretation of key factors driving user
+              engagement</strong
+            >
+            while filtering out less significant features.
           </p>
+
+          <h2>How PCA Improves This Project</h2>
+          <p>The main goal of PCA in this project is to:</p>
+          <ul>
+            <li>
+              <strong>Enhance Data Visualization:</strong> Reducing dimensions
+              makes user engagement patterns easier to visualize.
+            </li>
+            <li>
+              <strong>Improve Model Performance:</strong> Selecting the most
+              <strong>informative</strong> components helps refine predictions.
+            </li>
+            <li>
+              <strong>Optimize Feature Selection:</strong> Identifies the most
+              relevant attributes without unnecessary complexity.
+            </li>
+            <li>
+              <strong>Increase Computational Efficiency:</strong> Reducing data
+              dimensions speeds up analysis and reduces noise.
+            </li>
+          </ul>
 
           <h1>Data Preprocessing</h1>
           <p>
@@ -821,7 +895,7 @@
           <p>
             Code for preproccesing -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
               target="_blank"
               >PCA Data Preproccesing Code</a
             >
@@ -829,7 +903,7 @@
           <p>
             Link to raw dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
               target="_blank"
               >Raw Dataset</a
             >
@@ -837,7 +911,7 @@
           <p>
             Link to proccessed dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_pca.csv"
               target="_blank"
               >Processed Dataset</a
             >
@@ -1016,7 +1090,7 @@
           <p>
             To balance dimensionality reduction and information retention, PCA
             was used to determine how many components are needed to preserve at
-            least <strong>95%</strong> of the dataset’s variance. The analysis
+            least <strong>95%</strong> of the dataset's variance. The analysis
             found that <strong>6 principal components</strong> achieve this
             goal.
           </p>
@@ -1073,7 +1147,7 @@
           <p>
             Link to Model Implementation -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
               target="_blank"
               >Model Implementation</a
             >
@@ -1082,128 +1156,129 @@
           <h1>Results and Conclusion</h1>
           <h2>Results</h2>
           <p>
-            The Principal Component Analysis (PCA) was applied to reduce the
-            complexity of the dataset while retaining most of its valuable
-            information. The analysis provided key insights into the trade-off
-            between dimensionality reduction and information retention:
+            The Principal Component Analysis (PCA) was applied to simplify the
+            dataset while preserving its core information. The analysis provided
+            key insights into the balance between dimensionality reduction and
+            information retention.
           </p>
 
           <h3>Variance Retention in 2D PCA</h3>
           <ul>
             <li>
-              By selecting <b>two principal components</b>, <b>69.17%</b> of the
-              total variance was retained.
+              <b>Two principal components</b> retained
+              <b>69.17% of the total variance</b>.
             </li>
             <li>
-              This <b>simplifies the dataset</b> for visualization but results
-              in <b>30.83% information loss</b>, meaning some details are not
+              This allowed for <b>simplified visualization</b>, but resulted in
+              a <b>30.83% information loss</b>, meaning some patterns were not
               fully captured.
             </li>
             <li>
-              The <b>2D PCA scatter plot</b> shows clear clusters of data, with
-              some outliers indicating potential variations.
+              The <b>2D PCA scatter plot</b> highlights distinct clusters,
+              though some overlap and outliers indicate missing variability.
             </li>
           </ul>
 
           <h3>Variance Retention in 3D PCA</h3>
           <ul>
             <li>
-              By selecting <b>three principal components</b>, variance retention
-              improved to <b>78.60%</b>.
+              Using <b>three principal components</b> increased variance
+              retention to <b>78.60%</b>, improving information capture.
             </li>
             <li>
-              This represents a
-              <b>9.43% increase in information retention</b> compared to 2D PCA.
+              This represents a <b>9.43% gain</b> compared to 2D PCA, making the
+              data structure more distinct.
             </li>
             <li>
-              The <b>3D PCA scatter plot</b> shows better separation of data
-              points, making patterns more distinguishable.
+              The <b>3D PCA scatter plot</b> provides better separation of data
+              points, revealing clearer patterns.
             </li>
             <li>
-              While the 3D representation is an improvement,
-              <b>21.40% of variance is still lost</b>, meaning further
-              dimensions may be needed for a more complete representation.
+              However, <b>21.40% of variance remains unaccounted</b>, suggesting
+              the need for more dimensions to fully represent the dataset.
             </li>
           </ul>
 
           <h3>Optimal Number of Components</h3>
           <ul>
             <li>
-              The cumulative variance analysis determined that at least
-              <b>6 principal components</b> are required to retain
+              <b>Cumulative variance analysis</b> shows that at least
+              <b>six principal components</b> are required to retain
               <b>95% of the total variance</b>.
             </li>
             <li>
-              This ensures that most of the dataset's structure and
-              relationships are preserved while reducing the number of
-              dimensions.
+              This ensures the dataset’s key structure and relationships are
+              <b>preserved while reducing complexity</b>.
             </li>
             <li>
-              Using 6 components allows for a balance between reducing
-              computational complexity and maintaining data integrity.
+              Using <b>six components</b> provides an optimal balance between
+              <b>computational efficiency</b> and <b>data integrity</b>.
             </li>
           </ul>
 
           <h3>Eigenvalue Analysis</h3>
           <ul>
             <li>
-              The eigenvalues represent how much variance each principal
-              component captures:
+              Eigenvalues represent the
+              <b>importance of each principal component</b> in capturing
+              variance:
             </li>
             <li>
-              <b>PC1 (5.75)</b> captures the most variance and has the highest
-              importance.
+              <b>PC1 (5.75)</b> captures the highest variance, making it the
+              most influential.
+            </li>
+            <li><b>PC2 (3.94)</b> significantly improves representation.</li>
+            <li>
+              <b>PC3 (1.32)</b> holds meaningful information but contributes
+              less.
             </li>
             <li>
-              <b>PC2 (3.94)</b> adds substantial value, further improving the
-              dataset's representation.
-            </li>
-            <li>
-              <b>PC3 (1.32)</b> contributes less but still holds meaningful
-              information.
-            </li>
-            <li>
-              The <b>eigenvalue bar chart</b> visually confirms that PC1
-              dominates the dataset's variance, followed by PC2 and PC3.
+              The <b>eigenvalue bar chart</b> visually confirms that
+              <b>PC1 dominates</b>, followed by <b>PC2 and PC3</b>, reinforcing
+              the importance of the first few components.
             </li>
           </ul>
 
           <h2>Conclusion</h2>
           <p>
             PCA effectively reduced the dataset's dimensionality while
-            preserving its most important features. The analysis demonstrated
+            preserving its most significant features. The analysis demonstrated
             that:
           </p>
           <ul>
             <li>
-              A <b>2-component PCA</b> is useful for visualization but results
-              in <b>significant information loss</b>.
+              <b>2-component PCA</b> is useful for visualization but causes
+              <b>substantial information loss</b>.
             </li>
             <li>
-              A <b>3-component PCA</b> provides a better representation while
-              still losing <b>21.40% of variance</b>.
+              <b>3-component PCA</b> provides better structure while still
+              losing <b>21.40% of variance</b>.
             </li>
             <li>
-              For optimal balance, <b>6 principal components</b> should be used
-              to retain at least <b>95% of the datase's information</b>.
+              <b>6 principal components</b> retain at least
+              <b>95% of the dataset's information</b>, making them ideal for
+              analysis.
             </li>
             <li>
-              The eigenvalue analysis confirmed that the first few components
-              capture most of the dataset's structure, making them the most
-              valuable for analysis.
+              <b>Eigenvalue analysis</b> confirms that the first few components
+              capture most of the dataset's meaningful structure.
             </li>
           </ul>
           <p>
-            By applying PCA, this project successfully reduced redundancy in the
-            dataset while maintaining interpretability. The findings provide
-            valuable insights into user engagement patterns on Stack Overflow,
-            helping to identify key features that drive activity on the
-            platform.
+            By applying PCA, this project successfully
+            <b>removed redundancy while maintaining interpretability</b>. The
+            findings provide
+            <b
+              >valuable insights into user engagement patterns on Stack
+              Overflow</b
+            >, helping to <b>identify key features</b> that drive activity on
+            the platform.
           </p>
+
           <p>
             Link to complete code -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
               target="_blank"
               >Complete Implementation</a
             >
@@ -1232,7 +1307,7 @@
             main types of clustering algorithms—K-Means (partition-based),
             Hierarchical Clustering (tree-based), and DBSCAN
             (density-based)—each have unique strengths and weaknesses depending
-            on the dataset’s characteristics. Clustering helps uncover hidden
+            on the dataset's characteristics. Clustering helps uncover hidden
             insights, simplifies data for further analysis, and enhances
             decision-making in various domains, from marketing to
             bioinformatics.
