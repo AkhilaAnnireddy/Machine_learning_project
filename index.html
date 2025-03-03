@@ -1507,34 +1507,42 @@
           <h1>Overview</h1>
           <h2>Association Rule Mining</h2>
           <p>
-            tween variables in large datasets. It is commonly applied in market
-            basket analysis, where businesses analyze customer purchases to
-            identify patterns like "Customers who buy bread often buy butter."
-            ARM helps businesses make data-driven decisions for product
-            recommendations, inventory management, and marketing strategies.
+            Association Rule Mining is a data mining technique used to identify
+            hidden relationships between variables in large datasets. It is
+            commonly used in market basket analysis, where businesses analyze
+            customer purchases to uncover patterns such as customers who buy
+            bread often buy butter. ARM helps in making data-driven decisions
+            for product recommendations, inventory management, and marketing
+            strategies by discovering frequent itemsets and generating rules
+            that highlight meaningful associations.
           </p>
           <h2>Key Measures in ARM: Support, Confidence, and Lift</h2>
           <p>
-            Support: Measures how frequently an itemset appears in the dataset.
-            It is defined as the proportion of transactions containing the
-            itemset. Higher support values indicate more commonly occurring
-            patterns.
+            Support measures how frequently an itemset appears in the dataset. A
+            higher support value indicates that the pattern is more commonly
+            occurring.
           </p>
           <p>
-            Confidence: Indicates how often the rule "If X, then Y" holds true.
-            It measures the probability that Y is purchased given that X is
-            already present in the transaction.
+            Confidence represents how often the rule "If X, then Y" holds true.
+            It calculates the probability that Y is purchased given X is already
+            present in the transaction.
           </p>
           <p>
-            Lift: Measures the strength of an association rule by comparing its
-            occurrence to what would be expected if X and Y were independent. A
-            lift value greater than 1.0 suggests a strong positive correlation
-            between X and Y.
+            Lift measures the strength of an association by comparing its
+            occurrence with what would be expected if X and Y were independent.
+            A lift value greater than one indicates a strong positive
+            correlation between X and Y.
           </p>
           <p>
-            These measures help filter out weak rules and highlight meaningful
-            associations.
+            These measures help filter out weak rules and ensure that only the
+            strongest relationships are identified.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/arm_pic_1.png"
+            alt="data columns"
+          />
+
           <h2>Association Rules</h2>
           <p>
             Association rules are statements that define relationships between
@@ -1568,60 +1576,65 @@
           <h2>The Apriori Algorithm and How It Works</h2>
 
           <p>
-            The Apriori algorithm is one of the most popular methods for
-            discovering association rules. It follows a
-            <strong>bottom-up approach</strong>, iteratively identifying
-            frequent itemsets and using them to generate association rules.
+            The Apriori Algorithm is a widely used method for discovering
+            association rules by identifying frequently occurring itemsets and
+            generating meaningful rules.
           </p>
 
-          <h3>How Apriori Works:</h3>
+          <p>
+            The first step involves scanning the dataset to find individual
+            items that appear frequently based on a minimum support threshold.
+            Pairs, triplets, and higher-order itemsets are generated, keeping
+            only those that meet the support criteria.
+          </p>
 
-          <h4>Step 1: Find Frequent Itemsets</h4>
-          <ul>
-            <li>
-              The algorithm scans the dataset and identifies individual items
-              that meet a minimum support threshold.
-            </li>
-            <li>
-              It then generates pairs, triplets, and higher-order itemsets,
-              keeping only those that occur frequently.
-            </li>
-          </ul>
+          <p>
+            Next, the algorithm applies the Apriori Property, which states that
+            if an itemset is infrequent, its supersets will also be infrequent.
+            This helps eliminate unnecessary calculations, making the algorithm
+            efficient and scalable.
+          </p>
 
-          <h4>Step 2: Prune Uncommon Itemsets</h4>
-          <ul>
-            <li>
-              Apriori applies the <strong>"Apriori Property"</strong>, which
-              states that if an itemset is infrequent, then its supersets are
-              also infrequent.
-            </li>
-            <li>
-              This step eliminates unnecessary calculations and speeds up
-              processing.
-            </li>
-          </ul>
+          <p>
+            Frequent itemsets are then used to create rules, and their
+            confidence and lift values are calculated. Only rules meeting
+            predefined confidence and lift thresholds are retained.
+          </p>
 
-          <h4>Step 3: Generate Association Rules</h4>
-          <ul>
-            <li>
-              Using the frequent itemsets, the algorithm creates rules (<strong
-                >X → Y</strong
-              >) and calculates their confidence and lift.
-            </li>
-            <li>
-              Only rules meeting the predefined confidence and lift thresholds
-              are retained.
-            </li>
-          </ul>
-
-          <h4>Step 4: Rule Evaluation and Selection</h4>
-          <ul>
-            <li>
-              The final set of rules is ranked based on
-              <strong>support, confidence, and lift</strong> to highlight the
-              strongest relationships.
-            </li>
-          </ul>
+          <p>
+            Finally, the rules are ranked based on Support, Confidence, and
+            Lift, ensuring only the strongest and most meaningful associations
+            are considered.
+          </p>
+          <img
+            class="profile-image"
+            src="Website/assets/arm_pic_2.png"
+            alt="data columns"
+          />
+          <h2>How ARM is Used in This Project</h2>
+          <p>
+            In this project, ARM was applied to analyze user engagement based on
+            factors like reputation, badges, and account longevity. The dataset
+            was preprocessed to ensure compatibility with the Apriori algorithm.
+          </p>
+          <p>
+            Numerical values were converted into binary categories, such as
+            assigning one to high reputation if the reputation score is greater
+            than one thousand.
+          </p>
+          <p>
+            Categorical attributes were one-hot encoded to ensure efficient rule
+            extraction. Frequent itemsets were extracted using Apriori with a
+            minimum support of five percent. Association rules were generated
+            based on Lift greater than one, ensuring only meaningful connections
+            were retained.
+          </p>
+          <p>
+            The results showed strong correlations between high reputation and
+            badge accumulation, as well as a connection between high acceptance
+            rates and silver badges, reinforcing how user engagement impacts
+            recognition.
+          </p>
           <h1>Data Preparation</h1>
           <p>
             Before applying <strong>Association Rule Mining (ARM)</strong>, the
@@ -1707,24 +1720,24 @@
             src="Website/assets/cleaned_data.png"
             alt="data columns"
           />
-          <h3>Cleaned Data for PCA</h3>
+          <h3>Cleaned Data for ARM</h3>
           <img
             class="profile-image"
-            src="Website/assets/cleaned_data_for_pca.png"
+            src="Website/assets/arm_cleaned_dataset.png"
             alt="data columns"
           />
           <p>
             Code for preproccesing -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
               target="_blank"
-              >PCA Data Preproccesing Code</a
+              >ARM Data Preproccesing Code</a
             >
           </p>
           <p>
             Link to raw dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
               target="_blank"
               >Raw Dataset</a
             >
@@ -1735,6 +1748,113 @@
               href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
               target="_blank"
               >Processed Dataset</a
+            >
+          </p>
+          <h1>Implementation</h1>
+          <p>
+            Association Rule Mining (ARM) was implemented using the Apriori
+            algorithm to identify meaningful relationships within the dataset.
+            Frequent itemsets were extracted with a minimum support of 5%,
+            ensuring only significant patterns were considered. Association
+            rules were then generated using the lift metric with a threshold of
+            1.0, highlighting strong connections between attributes.
+          </p>
+          <p>
+            The extracted rules revealed key insights, such as users with many
+            bronze badges almost always having a high reputation and older
+            accounts being strongly linked to higher reputation. Additionally,
+            users with high acceptance rates often exhibited high reputation,
+            though this relationship was less frequent. A network visualization
+            further illustrated these associations, showing how reputation,
+            account longevity, and badge accumulation played a central role in
+            user engagement.
+          </p>
+          <p>
+            To refine insights, rules were ranked based on support, confidence,
+            and lift, with the top 15 rules selected for each metric. This
+            helped in understanding the most impactful patterns. The findings
+            provide valuable insights for recommendation systems, customer
+            segmentation, and user behavior analysis, allowing for a data-driven
+            approach to enhancing engagement and decision-making.
+          </p>
+          <h3>Association Rules Network Visualization</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/arm_network_final.png"
+            alt="data columns"
+          />
+          <p>
+            The Association Rules Network Graph visually represents the
+            connections between different user attributes based on frequent
+            patterns. Each node in the graph represents an attribute, while the
+            edges show strong relationships between them.
+          </p>
+          <p>
+            The graph highlights that high reputation is closely linked to many
+            badges and old accounts, suggesting that users who have been active
+            for a long time and earned multiple badges tend to gain credibility.
+            Similarly, a high acceptance rate is associated with many silver
+            badges, indicating that users with consistently accepted
+            contributions receive more recognition.
+          </p>
+          <p>
+            The layout of the graph forms distinct clusters, showing how
+            experience, engagement, and recognition work together. This
+            visualization helps in understanding user behavior, identifying key
+            influencers, and optimizing engagement strategies on the platform.
+          </p>
+
+          <h1>Results</h1>
+          <p>
+            The Association Rule Mining (ARM) analysis uncovered key insights
+            into user engagement, reputation, and behavior patterns. The
+            extracted association rules demonstrated strong relationships
+            between user attributes, particularly reputation, badges, and
+            account age. Users with many bronze badges were almost always
+            associated with high reputation, while older accounts had a strong
+            connection to higher credibility. Additionally, users with a high
+            acceptance rate tended to earn more silver badges, reinforcing the
+            idea that consistent, high-quality contributions lead to
+            recognition.
+          </p>
+          <p>
+            The top 15 association rules were ranked based on support,
+            confidence, and lift, helping identify the most significant
+            patterns. The network visualization further highlighted these
+            associations, forming clusters that reveal how experience,
+            engagement, and recognition interact to shape user activity.
+          </p>
+          <p>
+            These insights are valuable for optimizing recommendation systems,
+            improving user engagement strategies, and personalizing user
+            experiences. The findings suggest that active participation and
+            consistent quality contributions play a crucial role in building a
+            strong reputation over time. By transforming numerical attributes
+            into binary categories, the dataset was efficiently processed,
+            making it easier to extract meaningful patterns.
+          </p>
+          <p>
+            Overall, this study demonstrates how ARM can uncover hidden trends,
+            predict future engagement, and support data-driven decision-making.
+            The extracted rules and visualizations provide a clear foundation
+            for enhancing platform interactions, identifying key influencers,
+            and improving user satisfaction through personalized recommendations
+            and strategic optimizations.
+          </p>
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
             >
           </p>
         </div>
