@@ -691,6 +691,7 @@
         <div class="internal-tabs">
           <button class="tab-btn active" data-target="pca">PCA</button>
           <button class="tab-btn" data-target="clustering">Clustering</button>
+          <button class="tab-btn" data-target="arm">ARM</button>
         </div>
 
         <!-- PCA Content -->
@@ -1477,6 +1478,241 @@
             to ensure efficient and meaningful clustering, leading to more
             interpretable insights into user engagement and behavior patterns.
           </p>
+          <p>
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              target="_blank"
+              >PCA Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              target="_blank"
+              >Processed Dataset</a
+            >
+          </p>
+        </div>
+        <div id="arm" class="model-content">
+          <h1>Overview</h1>
+          <h2>Association Rule Mining</h2>
+          <p>
+            tween variables in large datasets. It is commonly applied in market
+            basket analysis, where businesses analyze customer purchases to
+            identify patterns like "Customers who buy bread often buy butter."
+            ARM helps businesses make data-driven decisions for product
+            recommendations, inventory management, and marketing strategies.
+          </p>
+          <h2>Key Measures in ARM: Support, Confidence, and Lift</h2>
+          <p>
+            Support: Measures how frequently an itemset appears in the dataset.
+            It is defined as the proportion of transactions containing the
+            itemset. Higher support values indicate more commonly occurring
+            patterns.
+          </p>
+          <p>
+            Confidence: Indicates how often the rule "If X, then Y" holds true.
+            It measures the probability that Y is purchased given that X is
+            already present in the transaction.
+          </p>
+          <p>
+            Lift: Measures the strength of an association rule by comparing its
+            occurrence to what would be expected if X and Y were independent. A
+            lift value greater than 1.0 suggests a strong positive correlation
+            between X and Y.
+          </p>
+          <p>
+            These measures help filter out weak rules and highlight meaningful
+            associations.
+          </p>
+          <h2>Association Rules</h2>
+          <p>
+            Association rules are statements that define relationships between
+            two or more items in a dataset. They take the form:
+          </p>
+
+          <p class="rule">X ⇒ Y</p>
+
+          <p>
+            Where <strong>X (Antecedent)</strong> is the condition and
+            <strong>Y (Consequent)</strong> is the outcome. For example:
+          </p>
+
+          <div class="example">
+            <p>
+              <strong>{Laptop} → {Mouse}</strong> (If a customer buys a laptop,
+              they are likely to buy a mouse.)
+            </p>
+            <p>
+              <strong>{Milk, Bread} → {Butter}</strong> (If a customer buys milk
+              and bread, they are likely to buy butter.)
+            </p>
+          </div>
+
+          <p>
+            Strong association rules help in making
+            <strong>business recommendations</strong>, improving
+            <strong>user experience</strong>, and optimizing
+            <strong>inventory management</strong>.
+          </p>
+          <h2>The Apriori Algorithm and How It Works</h2>
+
+          <p>
+            The Apriori algorithm is one of the most popular methods for
+            discovering association rules. It follows a
+            <strong>bottom-up approach</strong>, iteratively identifying
+            frequent itemsets and using them to generate association rules.
+          </p>
+
+          <h3>How Apriori Works:</h3>
+
+          <h4>Step 1: Find Frequent Itemsets</h4>
+          <ul>
+            <li>
+              The algorithm scans the dataset and identifies individual items
+              that meet a minimum support threshold.
+            </li>
+            <li>
+              It then generates pairs, triplets, and higher-order itemsets,
+              keeping only those that occur frequently.
+            </li>
+          </ul>
+
+          <h4>Step 2: Prune Uncommon Itemsets</h4>
+          <ul>
+            <li>
+              Apriori applies the <strong>"Apriori Property"</strong>, which
+              states that if an itemset is infrequent, then its supersets are
+              also infrequent.
+            </li>
+            <li>
+              This step eliminates unnecessary calculations and speeds up
+              processing.
+            </li>
+          </ul>
+
+          <h4>Step 3: Generate Association Rules</h4>
+          <ul>
+            <li>
+              Using the frequent itemsets, the algorithm creates rules (<strong
+                >X → Y</strong
+              >) and calculates their confidence and lift.
+            </li>
+            <li>
+              Only rules meeting the predefined confidence and lift thresholds
+              are retained.
+            </li>
+          </ul>
+
+          <h4>Step 4: Rule Evaluation and Selection</h4>
+          <ul>
+            <li>
+              The final set of rules is ranked based on
+              <strong>support, confidence, and lift</strong> to highlight the
+              strongest relationships.
+            </li>
+          </ul>
+          <h1>Data Preparation</h1>
+          <p>
+            Before applying <strong>Association Rule Mining (ARM)</strong>, the
+            dataset needs to be transformed into a format suitable for
+            algorithms like <strong>Apriori</strong>. The following
+            preprocessing steps were applied to prepare the data:
+          </p>
+
+          <h3>1. Converting Numerical Attributes into Binary Categories</h3>
+          <p>
+            ARM works with binary data, where each attribute is either present
+            (1) or absent (0). To achieve this, numerical attributes were
+            categorized into meaningful binary indicators. Examples include:
+          </p>
+          <ul>
+            <li>
+              <code>high_reputation = 1</code> if
+              <code>reputation > 1000</code>, else <code>0</code>.
+            </li>
+            <li>
+              <code>many_bronze_badges = 1</code> if
+              <code>badge_bronze > 10</code>, else <code>0</code>.
+            </li>
+            <li>
+              <code>old_account = 1</code> if
+              <code>account_age_days > 1000</code>, else <code>0</code>.
+            </li>
+          </ul>
+
+          <h3>2. Encoding Categorical Variables</h3>
+          <p>
+            To ensure categorical attributes can be used in ARM, one-hot
+            encoding was applied. This converts categories into separate binary
+            columns. Example:
+          </p>
+          <ul>
+            <li>
+              <code>user_type</code> and <code>age_group</code> were transformed
+              using one-hot encoding.
+            </li>
+            <li>
+              The first category in each variable was dropped
+              (<code>drop_first=True</code>) to avoid redundancy.
+            </li>
+          </ul>
+
+          <h3>3. Selecting Relevant Features for ARM</h3>
+          <p>
+            Only binary-transformed attributes were retained for ARM. The final
+            dataset included:
+          </p>
+          <ul>
+            <li>
+              <code>high_reputation</code>, <code>many_bronze_badges</code>,
+              <code>many_silver_badges</code>
+            </li>
+            <li>
+              <code>many_gold_badges</code>, <code>old_account</code>,
+              <code>high_accept_rate</code>
+            </li>
+          </ul>
+
+          <h3>4. Final Data Structure</h3>
+          <p>
+            The transformed dataset now contains binary values (1 or 0),
+            ensuring compatibility with ARM algorithms. Example:
+          </p>
+          <pre>
+         high_reputation  many_bronze_badges  many_silver_badges  many_gold_badges  old_account  high_accept_rate
+      0              1                   1                   1                 1            1                 1
+      1              1                   1                   1                 1            1                 1
+      2              1                   1                   1                 1            1                 1
+              </pre
+          >
+
+          <p>
+            With this preprocessing, the dataset is now ready for ARM, allowing
+            for efficient discovery of meaningful association rules.
+          </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for PCA</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data_for_pca.png"
+            alt="data columns"
+          />
           <p>
             Code for preproccesing -
             <a
