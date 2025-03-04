@@ -1645,18 +1645,30 @@
             to ensure efficient and meaningful clustering, leading to more
             interpretable insights into user engagement and behavior patterns.
           </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for Clustering</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data_for_pca.png"
+            alt="data columns"
+          />
           <p>
             Code for preproccesing -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/clustering_model_impl.ipynb"
               target="_blank"
-              >PCA Data Preproccesing Code</a
+              >Clustering Data Preproccesing Code</a
             >
           </p>
           <p>
             Link to raw dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
               target="_blank"
               >Raw Dataset</a
             >
@@ -1664,9 +1676,393 @@
           <p>
             Link to proccessed dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Datacleaning/Data_cleaning.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_clustering.csv"
               target="_blank"
               >Processed Dataset</a
+            >
+          </p>
+          <h1>Implementation</h1>
+          <h2>K - Means Clustering</h2>
+          <p>
+            The K-Means clustering algorithm was applied to the PCA-transformed
+            dataset to identify distinct user engagement patterns. Silhouette
+            analysis determined that k=6 provided the best-defined clusters,
+            achieving a silhouette score of ~0.51, ensuring well-separated and
+            cohesive groupings. The clustering remained stable from k=3 to k=6,
+            while k≥7 led to poor separation, reducing the distinctiveness of
+            clusters.
+          </p>
+          <p>
+            At k=3, users were broadly categorized into low, moderate, and
+            highly active engagement levels. Increasing k to 4 and 5 introduced
+            finer divisions, capturing more nuanced user behaviors. With k=5,
+            one cluster highlighted highly active yet inconsistent users,
+            demonstrating how increasing k refines engagement-based
+            segmentation.
+          </p>
+          <img
+            class="profile-image"
+            src="Website/assets/optimal_k.png"
+            alt="Scree Plot"
+          />
+          <p>
+            Cluster centroids adjusted dynamically as k increased, refining
+            group boundaries, while outliers indicated unique engagement
+            behaviors. When comparing clusters with account age distribution,
+            k=5 emerged as the most balanced choice, effectively segmenting
+            users while maintaining interpretability.
+          </p>
+          <p>
+            The final clustered dataset was saved for further behavioral
+            analysis, providing a structured foundation for insights into user
+            engagement trends, reputation growth, and content interaction
+            patterns on Stack Overflow.
+          </p>
+          <p>
+            Code for K-Means -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/clustering_model_impl.ipynb"
+              target="_blank"
+              >K - Means clustering Implementation</a
+            >
+          </p>
+          <h2>Hierarchical Clustering</h2>
+          <p>
+            Hierarchical clustering was applied to identify meaningful user
+            segments based on their engagement patterns. Unlike K-Means, which
+            requires specifying the number of clusters beforehand, hierarchical
+            clustering builds a tree-like structure (dendrogram), allowing us to
+            determine the optimal number of clusters by analyzing how data
+            points merge at different levels.
+          </p>
+          <h3>Dendrogram Analysis</h3>
+          <p>
+            The dendrogram visually represents the hierarchical relationships
+            between data points. The longest vertical branches indicate
+            significant separations between groups, while shorter branches
+            suggest smaller differences. Observing the dendrogram:
+          </p>
+          <ul>
+            <li>
+              Three major clusters emerge at higher levels, suggesting that
+              three clusters provide a meaningful division of users.
+            </li>
+            <li>
+              As we move downward, the dataset splits into finer sub-clusters,
+              showing that some user groups are more similar to each other than
+              others.
+            </li>
+            <li>
+              The lower section of the dendrogram is densely packed, meaning
+              many users exhibit similar engagement behaviors.
+            </li>
+          </ul>
+          <p>
+            By analyzing the largest gaps in the dendrogram, it was determined
+            that three clusters would be an appropriate choice for segmenting
+            users.
+          </p>
+          <img
+            class="profile-image"
+            src="Website/assets/dendrogram.png"
+            alt="Scree Plot"
+          />
+          <h3>Cluster Interpretation</h3>
+          <p>
+            The final clustering results plot (scatter plot) provides a visual
+            representation of how users are grouped based on PCA-reduced
+            features:
+          </p>
+          <ul>
+            <li>
+              Cluster 1 (Red): A tightly packed group representing users with
+              similar engagement patterns. These users likely follow common
+              behaviors, such as regular activity or similar reputation scores.
+            </li>
+            <li>
+              Cluster 2 (Blue): A widely spread group, possibly containing
+              outliers or users with highly unique behaviors. These could be
+              either inactive users, new users, or users with extreme reputation
+              scores.
+            </li>
+            <li>
+              Cluster 3 (Green): Another well-defined group, similar to Cluster
+              1 but with slight variations in engagement metrics.
+            </li>
+          </ul>
+          <h3>Comparison with K-Means</h3>
+          <p>Compared to K-Means clustering, hierarchical clustering offers:</p>
+          <ul>
+            <li>
+              A clear structure: The dendrogram helps in visually understanding
+              how clusters form and merge.
+            </li>
+            <li>
+              Flexibility in choosing clusters: The number of clusters can be
+              selected based on natural separations instead of being predefined.
+            </li>
+            <li>
+              Better handling of outliers: Unlike K-Means, which may force all
+              points into clusters, hierarchical clustering helps in identifying
+              outliers separately.
+            </li>
+          </ul>
+          <p>
+            Code for Hierarchical Clustering -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/clustering_model_impl.ipynb"
+              target="_blank"
+              >Hierarchical clustering Implementation</a
+            >
+          </p>
+          <h2>DBSCAN</h2>
+          <p>
+            DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
+            was applied to group users based on their engagement patterns while
+            effectively identifying outliers. Unlike K-Means, DBSCAN does not
+            require specifying the number of clusters beforehand. Instead, it
+            relies on two key parameters: <b>eps</b> (the neighborhood radius)
+            and <b>min_samples</b>
+            (the minimum number of points required to form a dense region).
+          </p>
+
+          <h3>K-Distance Graph Analysis for eps Selection</h3>
+          <p>
+            To determine the optimal <b>eps</b> value, a
+            <b>K-Distance Graph</b> was plotted using the 5th nearest neighbor
+            distances:
+          </p>
+          <ul>
+            <li>
+              <b>Flat Region at the Start:</b> Most points have small
+              nearest-neighbor distances, indicating dense clusters.
+            </li>
+            <li>
+              <b>Sharp Increase at the End:</b> A steep rise at the far right
+              suggests isolated points (outliers).
+            </li>
+            <li>
+              <b>Optimal eps Selection:</b> The ideal eps value is chosen just
+              before the sharp increase, ensuring DBSCAN distinguishes between
+              <b>core points</b> and <b>noise</b> effectively.
+            </li>
+          </ul>
+          <img
+            class="profile-image"
+            src="Website/assets/dbscan_pioc.png"
+            alt="Scree Plot"
+          />
+          <h3>DBSCAN Clustering Results</h3>
+          <p>After applying DBSCAN, the following observations were made:</p>
+          <ul>
+            <li>
+              <b>Dominant Cluster:</b> The majority of data points (88,398)
+              belong to <b>Cluster 1</b>, showing a well-defined dense region.
+            </li>
+            <li>
+              <b>Significant Outliers:</b> DBSCAN identified
+              <b>9,408 outliers</b>, categorized under <b>Cluster -1</b>,
+              indicating noisy or anomalous points.
+            </li>
+            <li>
+              <b>Second-Largest Cluster:</b> <b>Cluster 0</b> contains
+              <b>6,686 points</b>, forming another meaningful segment.
+            </li>
+            <li>
+              <b>Smaller Clusters:</b> The remaining clusters have very few
+              points, with most containing fewer than 20 data points, suggesting
+              highly specific user groups.
+            </li>
+          </ul>
+
+          <h3>DBSCAN Visualization and Interpretation</h3>
+          <ul>
+            <li>
+              <b>Cluster Formation:</b> Multiple clusters were detected, each
+              represented by different colors in the PCA-reduced scatter plot.
+            </li>
+            <li>
+              <b>Outliers and Noise:</b> Scattered points categorized as
+              <b>Cluster -1</b> represent anomalies or isolated data points.
+            </li>
+            <li>
+              <b>Dense Core:</b> A compact grouping of most points suggests
+              strong clustering behavior.
+            </li>
+            <li>
+              <b>Vertical Spread:</b> Data is concentrated in a narrow
+              <b>Principal Component 1 (PC1)</b> range, while variation is more
+              visible along <b>Principal Component 2 (PC2)</b>.
+            </li>
+          </ul>
+
+          <h3>Comparison with K-Means and Hierarchical Clustering</h3>
+          <ul>
+            <li>
+              <b>Outlier Detection:</b> DBSCAN effectively
+              <b>identifies anomalies</b>, unlike K-Means, which forces all
+              points into clusters.
+            </li>
+            <li>
+              <b>Automatic Cluster Detection:</b> Unlike K-Means, where
+              <b>k</b> must be predefined, DBSCAN automatically determines the
+              number of clusters.
+            </li>
+            <li>
+              <b>Flexibility in Cluster Shapes:</b> DBSCAN can detect
+              <b>arbitrarily shaped clusters</b>, while K-Means assumes
+              spherical clusters.
+            </li>
+          </ul>
+          <p>
+            Code for DBSCAN -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/clustering_model_impl.ipynb"
+              target="_blank"
+              >DBSCAN Implementation</a
+            >
+          </p>
+          <h1>Comparison of Clustering Models</h1>
+          <table border="1">
+            <tr>
+              <th>Feature</th>
+              <th>K Means</th>
+              <th>DBSCAN</th>
+              <th>Hierarchical Clustering</th>
+            </tr>
+            <tr>
+              <td>Cluster Shape</td>
+              <td>Spherical, equal-sized clusters</td>
+              <td>Arbitrary shapes based on density</td>
+              <td>Tree-based hierarchical clusters</td>
+            </tr>
+            <tr>
+              <td>Outlier Detection</td>
+              <td>No direct detection</td>
+              <td>Effectively detects outliers</td>
+              <td>No direct detection</td>
+            </tr>
+            <tr>
+              <td>Best For</td>
+              <td>Well-separated data</td>
+              <td>Densely packed, noisy data</td>
+              <td>Understanding cluster hierarchy</td>
+            </tr>
+            <tr>
+              <td>Scalability</td>
+              <td>Fast for large datasets</td>
+              <td>Slower for large datasets</td>
+              <td>Computationally expensive</td>
+            </tr>
+            <tr>
+              <td>Cluster Count</td>
+              <td>Fixed, predefined number of clusters</td>
+              <td>Automatic, density-based</td>
+              <td>Flexible, determined by hierarchy</td>
+            </tr>
+            <tr>
+              <td>Noise Handling</td>
+              <td>Sensitive to outliers</td>
+              <td>Handles noise effectively</td>
+              <td>Does not handle noise well</td>
+            </tr>
+            <tr>
+              <td>Flexibility</td>
+              <td>Requires tuning the number of clusters</td>
+              <td>Automatically detects clusters</td>
+              <td>No need for predefined clusters</td>
+            </tr>
+            <tr>
+              <td>Interpretability</td>
+              <td>Easy to interpret</td>
+              <td>Harder to visualize</td>
+              <td>Provides a clear hierarchy</td>
+            </tr>
+            <tr>
+              <td>Best Use Case</td>
+              <td>Balanced data, predefined groups</td>
+              <td>Irregularly shaped clusters, noisy data</td>
+              <td>Visualizing relationships between clusters</td>
+            </tr>
+          </table>
+          <h1>Results and Conclusion</h1>
+          <h3>Clustering Analysis Results</h3>
+          <p>
+            The clustering analysis was conducted using three models:
+            <strong>K-Means, DBSCAN, and Hierarchical Clustering</strong>. Each
+            model provided unique insights into user engagement on Stack
+            Overflow.
+          </p>
+
+          <h4>K-Means Clustering</h4>
+          <p>
+            K-Means identified <b>six distinct clusters</b>, with the highest
+            silhouette score of <b>0.51</b>. It effectively categorized users
+            based on reputation, engagement, and activity levels. The clusters
+            captured varying user behaviors, from highly active contributors to
+            low-engagement users. However, K-Means struggled with noise and
+            outliers, leading to some misclassified data points.
+          </p>
+
+          <h4>DBSCAN Clustering</h4>
+          <p>
+            DBSCAN efficiently handled noise and detected <b>9,408 outliers</b>,
+            distinguishing them from meaningful user clusters. It successfully
+            captured dense user groups but also formed several small, scattered
+            clusters. This method proved beneficial for identifying anomalous
+            users or less frequent engagement patterns but was sensitive to
+            variations in cluster density.
+          </p>
+
+          <h4>Hierarchical Clustering</h4>
+          <p>
+            Hierarchical Clustering provided a structured view of the data,
+            illustrating relationships between users through a dendrogram. The
+            analysis suggested
+            <b>three primary clusters</b>, reflecting different engagement
+            levels. The visualization helped in understanding the natural
+            hierarchy of users, but computational complexity made it less
+            scalable for larger datasets.
+          </p>
+
+          <h3>Conclusion</h3>
+          <p>
+            This project successfully demonstrated how different clustering
+            models can be applied to analyze user engagement patterns on Stack
+            Overflow. <b>K-Means</b> was effective in segmenting structured
+            data, <b>DBSCAN</b> handled outliers efficiently, and
+            <b>Hierarchical Clustering</b> provided a deeper hierarchical
+            insight into user relationships.
+          </p>
+
+          <p>
+            The findings highlight that user engagement follows structured
+            patterns, with experienced users forming well-defined groups, while
+            newer or less active users are more dispersed. These insights can
+            help in designing targeted engagement strategies, personalized
+            recommendations, and improving community retention.
+          </p>
+
+          <p>
+            Future enhancements could involve integrating deep learning
+            techniques for improved cluster analysis and user behavior
+            prediction, enabling more refined segmentation and better platform
+            optimization.
+          </p>
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/clustering_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
             >
           </p>
         </div>
