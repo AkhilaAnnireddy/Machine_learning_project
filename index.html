@@ -1684,21 +1684,25 @@
           <h1>Implementation</h1>
           <h2>K - Means Clustering</h2>
           <p>
-            The K-Means clustering algorithm was applied to the PCA-transformed
-            dataset to identify distinct user engagement patterns. Silhouette
-            analysis determined that k=6 provided the best-defined clusters,
-            achieving a silhouette score of ~0.51, ensuring well-separated and
-            cohesive groupings. The clustering remained stable from k=3 to k=6,
-            while k≥7 led to poor separation, reducing the distinctiveness of
-            clusters.
+            K-Means clustering was applied to the PCA-transformed dataset to
+            identify different patterns of user engagement. The goal was to
+            group users into meaningful clusters based on their activity and
+            reputation. Various values of k (the number of clusters) were
+            tested, and the optimal k was determined using silhouette analysis,
+            which measures how well each point fits within its cluster. The
+            results showed that k=6 provided the most well-separated and
+            balanced clusters, achieving a silhouette score of approximately
+            0.51, indicating strong cohesion within clusters and clear
+            separation between them.
           </p>
           <p>
-            At k=3, users were broadly categorized into low, moderate, and
-            highly active engagement levels. Increasing k to 4 and 5 introduced
-            finer divisions, capturing more nuanced user behaviors. With k=5,
-            one cluster highlighted highly active yet inconsistent users,
-            demonstrating how increasing k refines engagement-based
-            segmentation.
+            For k=3, users were broadly divided into three main categories: low,
+            moderate, and highly active engagement levels. Increasing the number
+            of clusters to k=4 and k=5 refined these groups further, capturing
+            more specific engagement behaviors. At k=5, a unique cluster
+            emerged, representing users with high but inconsistent activity,
+            highlighting how a higher k-value helps in uncovering more detailed
+            insights into user engagement.
           </p>
           <img
             class="profile-image"
@@ -1706,17 +1710,20 @@
             alt="Scree Plot"
           />
           <p>
-            Cluster centroids adjusted dynamically as k increased, refining
-            group boundaries, while outliers indicated unique engagement
-            behaviors. When comparing clusters with account age distribution,
-            k=5 emerged as the most balanced choice, effectively segmenting
-            users while maintaining interpretability.
+            As the number of clusters increased, the cluster centers (centroids)
+            adjusted dynamically, allowing for more precise grouping of users.
+            This helped in defining the boundaries between different engagement
+            levels. Additionally, outliers—users who did not fit neatly into any
+            cluster—were identified. These users might have unusual activity
+            patterns, such as a sudden spike in reputation or inconsistent
+            participation over time.
           </p>
           <p>
-            The final clustered dataset was saved for further behavioral
-            analysis, providing a structured foundation for insights into user
-            engagement trends, reputation growth, and content interaction
-            patterns on Stack Overflow.
+            When comparing the clustering results with account age distribution,
+            k=5 emerged as the most balanced choice. It effectively segmented
+            users into distinct groups while maintaining clarity and
+            interpretability. Beyond k=6, the clusters started to lose
+            distinction, making it harder to identify meaningful patterns.
           </p>
           <p>
             Code for K-Means -
@@ -2459,7 +2466,7 @@
         <h1>About</h1>
 
         <img
-          src="Website/assets/profile_picture.jpg"
+          src="Website/assets/akhila_annireddy_headshot.png"
           alt="Akhila Annireddy"
           class="profile-image"
         />
