@@ -1441,6 +1441,17 @@
             hand, uses epsilon-based (density) distance to group points
             effectively.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/clustering_2.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 0 auto;
+            "
+            alt="Clustering 1"
+          />
           <h2>Clustering Techniques</h2>
           <h2>K-Means Clustering</h2>
           <p>
@@ -1483,6 +1494,17 @@
             performance is sensitive to the choice of eps and min_samples,
             making parameter tuning crucial for accurate clustering results.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/clustering_1.png"
+            style="
+              max-width: 100%;
+              height: auto;
+              display: block;
+              margin: 0 auto;
+            "
+            alt="Clustering 1"
+          />
           <h2>Comparison of Clustering Algorithms</h2>
           <table border="1" cellspacing="0" cellpadding="8">
             <thead>
@@ -1735,83 +1757,79 @@
           </p>
           <h2>Hierarchical Clustering</h2>
           <p>
-            Hierarchical clustering was applied to identify meaningful user
-            segments based on their engagement patterns. Unlike K-Means, which
-            requires specifying the number of clusters beforehand, hierarchical
-            clustering builds a tree-like structure (dendrogram), allowing us to
-            determine the optimal number of clusters by analyzing how data
-            points merge at different levels.
+            Hierarchical clustering was applied to segment users based on
+            engagement patterns. Unlike K-Means, which requires a predefined
+            number of clusters, hierarchical clustering builds a tree-like
+            structure called a dendrogram, allowing a more flexible approach to
+            cluster selection.
           </p>
-          <h3>Dendrogram Analysis</h3>
+
+          <h3>Dendrogram Analysis Cosine Similarity</h3>
           <p>
-            The dendrogram visually represents the hierarchical relationships
-            between data points. The longest vertical branches indicate
-            significant separations between groups, while shorter branches
-            suggest smaller differences. Observing the dendrogram:
+            The dendrogram represents hierarchical relationships among data
+            points using cosine similarity, which measures how similar users are
+            based on their engagement behavior.
           </p>
+
+          <h3>Key Observations</h3>
           <ul>
             <li>
-              Three major clusters emerge at higher levels, suggesting that
-              three clusters provide a meaningful division of users.
+              Distinct Clusters: At a cosine distance threshold of approximately
+              60, about five to six well-separated clusters emerge.
             </li>
             <li>
-              As we move downward, the dataset splits into finer sub-clusters,
-              showing that some user groups are more similar to each other than
-              others.
+              Compact Groups: The leftmost clusters in orange and green show
+              users with highly similar behavior, merging at lower distances.
             </li>
             <li>
-              The lower section of the dendrogram is densely packed, meaning
-              many users exhibit similar engagement behaviors.
+              Diverse Behaviors: The rightmost clusters in purple and pink merge
+              at higher distances, indicating distinct user engagement patterns
+              or potential outliers.
+            </li>
+            <li>
+              Flexible Clustering: By analyzing where major splits occur, an
+              optimal number of clusters can be chosen dynamically.
             </li>
           </ul>
-          <p>
-            By analyzing the largest gaps in the dendrogram, it was determined
-            that three clusters would be an appropriate choice for segmenting
-            users.
-          </p>
           <img
             class="profile-image"
-            src="Website/assets/dendrogram.png"
-            alt="Scree Plot"
+            src="Website/assets/dendrogram_!.png"
+            alt="Cosine Similarity Dendrogram"
           />
           <h3>Cluster Interpretation</h3>
           <p>
-            The final clustering results plot (scatter plot) provides a visual
-            representation of how users are grouped based on PCA-reduced
-            features:
+            The final clustering results, plotted in a PCA-reduced space, reveal
+            well-defined user groups.
           </p>
           <ul>
             <li>
-              Cluster 1 (Red): A tightly packed group representing users with
-              similar engagement patterns. These users likely follow common
-              behaviors, such as regular activity or similar reputation scores.
+              Cluster One Red: Densely packed, representing users with similar
+              engagement behavior, likely regular contributors.
             </li>
             <li>
-              Cluster 2 (Blue): A widely spread group, possibly containing
-              outliers or users with highly unique behaviors. These could be
-              either inactive users, new users, or users with extreme reputation
-              scores.
+              Cluster Two Blue: A widely spread cluster, possibly containing
+              outliers or highly unique users such as new users or extremely
+              high reputation users.
             </li>
             <li>
-              Cluster 3 (Green): Another well-defined group, similar to Cluster
-              1 but with slight variations in engagement metrics.
+              Cluster Three Green: A structured group with engagement patterns
+              slightly different from Cluster One.
             </li>
           </ul>
           <h3>Comparison with K-Means</h3>
-          <p>Compared to K-Means clustering, hierarchical clustering offers:</p>
           <ul>
             <li>
-              A clear structure: The dendrogram helps in visually understanding
-              how clusters form and merge.
+              Visual Clarity: The dendrogram provides an intuitive structure for
+              cluster formation.
             </li>
             <li>
-              Flexibility in choosing clusters: The number of clusters can be
-              selected based on natural separations instead of being predefined.
+              Automatic Cluster Selection: No need to predefine the number of
+              clusters as clusters are determined based on natural separations.
             </li>
             <li>
-              Better handling of outliers: Unlike K-Means, which may force all
-              points into clusters, hierarchical clustering helps in identifying
-              outliers separately.
+              Better Outlier Detection: Unlike K-Means, hierarchical clustering
+              does not force all points into clusters, helping isolate anomalies
+              effectively.
             </li>
           </ul>
           <p>
