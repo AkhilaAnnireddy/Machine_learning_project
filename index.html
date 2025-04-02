@@ -787,6 +787,15 @@
           <button class="tab-btn active" data-target="pca">PCA</button>
           <button class="tab-btn" data-target="clustering">Clustering</button>
           <button class="tab-btn" data-target="arm">ARM</button>
+          <button class="tab-btn" data-target="naivebayes">Naive Bayes</button>
+          <button class="tab-btn" data-target="decisiontree">
+            Decision Tree
+          </button>
+          <button class="tab-btn" data-target="Regression">Regression</button>
+          <button class="tab-btn" data-target="svm">SVM</button>
+          <button class="tab-btn" data-target="Ensemble">
+            Ensemble Methods
+          </button>
         </div>
 
         <!-- PCA Content -->
@@ -2460,6 +2469,843 @@
             Link to complete code -
             <a
               href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
+            >
+          </p>
+        </div>
+        <div id="naivebayes" class="model-content">
+          <h1>Overview</h1>
+          <h2>Naive Bayes</h2>
+          <p>
+            Naïve Bayes (NB) is a supervised machine learning algorithm commonly
+            used for classification tasks. It is based on Bayes' Theorem, a
+            statistical principle that calculates the probability of a certain
+            outcome occurring, given prior knowledge or evidence. In the context
+            of machine learning, Naïve Bayes predicts the most likely class or
+            category a data point belongs to, based on the values of its input
+            features. This makes it especially useful in situations where we
+            want to categorize or label data automatically.
+          </p>
+          <p>
+            The algorithm is called naïve because it makes a strong and often
+            unrealistic assumption: that all input features are independent of
+            one another. In other words, it assumes that the presence or value
+            of one feature does not influence or relate to another — which is
+            almost never the case in real-world data. Despite this
+            oversimplification, Naïve Bayes tends to work surprisingly well in
+            practice, and often provides accurate and reliable results,
+            especially for large-scale classification problems.
+          </p>
+          <p>
+            Naïve Bayes is widely used across a variety of domains due to its
+            simplicity and effectiveness. One common application is spam
+            detection, where the algorithm classifies incoming emails as spam or
+            not spam based on keywords and patterns. It's also frequently used
+            in sentiment analysis, such as determining whether a product review
+            is positive or negative. In document classification, Naïve Bayes
+            helps categorize articles, news stories, or posts into topics like
+            sports, politics, or technology. In the healthcare domain, it can be
+            used for medical diagnosis, where patient symptoms are analyzed to
+            predict the likelihood of a certain disease. Additionally, it can be
+            applied to predict user behavior, such as classifying types of users
+            on platforms like Stack Overflow based on their activity,
+            reputation, and other profile features.
+          </p>
+          <h3>Working of Naive Bayes</h3>
+          <p>
+            Naïve Bayes is a method that helps us predict which category or
+            class something belongs to by looking at its features or
+            characteristics. It works by calculating the chance (probability)
+            that the item fits into each possible class, and then picks the one
+            with the highest chance.
+          </p>
+          <p>
+            To do this, Naïve Bayes uses something called Bayes' Theorem. This
+            formula helps us figure out how likely a class is, based on the
+            features we know. For example, if we're trying to guess if a user is
+            a “moderator” or “regular user” on Stack Overflow, the algorithm
+            looks at things like their reputation, badges, and whether they have
+            a profile image — and calculates the probability for each class.
+          </p>
+          <p>Formula for Naive Bayes</p>
+          <img
+            class="profile-image"
+            src="Website/assets/naive bayes formula.png"
+            alt="data columns"
+          />
+          <h4>Why Smoothing Is Important</h4>
+          <p>
+            Smoothing is used in Naïve Bayes models to handle the problem of
+            zero probabilities. If a class and feature combination never
+            occurred in the training data, it would be assigned a probability of
+            zero — which can completely nullify the final prediction. Laplace
+            smoothing (also called additive smoothing) adds a small constant
+            (typically 1) to every count, ensuring that no probability is ever
+            exactly zero. This improves model robustness and helps it generalize
+            better to unseen data.
+          </p>
+          <h2>Types of Naïve Bayes</h2>
+          <h3>Multinomial Naïve Bayes (MultinomialNB)</h3>
+          <p>
+            The Multinomial Naïve Bayes model is appropriate for classification
+            tasks involving discrete count data. It is particularly effective
+            when features represent the frequency or occurrence of events.
+            Typical applications include text classification, where features are
+            often word counts or term frequencies, and other domains where
+            feature values are non-negative integers. For instance, in community
+            platforms, counts of badges or posts can serve as relevant features
+            under this model. It is important to note that the model does not
+            support negative or continuous values.
+          </p>
+          <h3>Gaussian Naïve Bayes (GaussianNB)</h3>
+          <p>
+            The Gaussian Naïve Bayes model is designed for datasets containing
+            continuous numerical features. This model assumes that the
+            distribution of the feature values within each class follows a
+            Gaussian (normal) distribution. It is well-suited for cases
+            involving measurements such as age, score, reputation, or
+            percentages. Since many real-world metrics follow a bell-shaped
+            curve, this assumption often holds in practical scenarios.
+            GaussianNB is appropriate when the dataset includes real-valued
+            variables.
+          </p>
+          <h3>Bernoulli Naïve Bayes (BernoulliNB)</h3>
+          <p>
+            The Bernoulli Naïve Bayes model is best applied to datasets where
+            the features are binary (Boolean) in nature, meaning they can take
+            on values such as 0 or 1, representing absence or presence. The
+            model evaluates whether a specific attribute is present rather than
+            how often it appears. This is common in applications where data is
+            structured around binary outcomes, such as email spam detection or
+            feature toggles in user profiles. Each feature is treated
+            independently, and their binary values are used to estimate class
+            probabilities.
+          </p>
+          <h3>Categorical Naïve Bayes (CategoricalNB)</h3>
+          <p>
+            The Categorical Naïve Bayes model handles categorical variables,
+            where features consist of a finite set of non-numeric, non-ordered
+            categories. This model is suitable for data such as country names,
+            user roles, product types, or any labeled groups that are not
+            inherently numerical or hierarchical. CategoricalNB does not assume
+            any particular ordering or distance between category values, making
+            it effective for handling nominal features directly without
+            numerical encoding.
+          </p>
+          <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Naïve Bayes Type</th>
+                <th>Suitable Feature Type</th>
+                <th>Expected Data Format</th>
+                <th>Common Applications</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>MultinomialNB</strong></td>
+                <td>Discrete count data</td>
+                <td>Non-negative integers (0, 1, 2, ...)</td>
+                <td>Text classification, badge/post counts</td>
+              </tr>
+              <tr>
+                <td><strong>GaussianNB</strong></td>
+                <td>Continuous numeric data</td>
+                <td>Real numbers (floating-point)</td>
+                <td>Scores, percentages, reputation, continuous metrics</td>
+              </tr>
+              <tr>
+                <td><strong>BernoulliNB</strong></td>
+                <td>Binary (yes/no) features</td>
+                <td>Boolean or binary (0 or 1)</td>
+                <td>
+                  Presence/absence detection, email spam, binary indicators
+                </td>
+              </tr>
+              <tr>
+                <td><strong>CategoricalNB</strong></td>
+                <td>Categorical (nominal) features</td>
+                <td>Labeled categories (non-numeric)</td>
+                <td>
+                  User type, country, group memberships, categorical attributes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h1>Data Preparation</h1>
+          <p>
+            To prepare the dataset for Naive Bayes classification, the
+            continuous
+            <code>reputation</code> scores were transformed into four
+            quantile-based categories labeled as <strong>Beginner</strong>,
+            <strong>Intermediate</strong>, <strong>Advanced</strong>, and
+            <strong>Expert</strong>. This transformation enabled the task to be
+            framed as a multi-class classification problem rather than a
+            regression problem.
+          </p>
+
+          <p>
+            Irrelevant fields such as user IDs, profile URLs, and the original
+            continuous reputation values were removed to simplify the feature
+            space. All missing values across features were filled with 0 to
+            ensure compatibility with Naive Bayes algorithms, which do not
+            handle null values well. Additionally, rows containing any negative
+            values were filtered out when required, especially for count-based
+            models.
+          </p>
+
+          <p>
+            Different feature sets and preprocessing techniques were applied
+            based on the specific assumptions of each Naive Bayes model:
+          </p>
+
+          <ul>
+            <li>
+              <strong>MultinomialNB & ComplementNB:</strong> These models
+              require discrete, non-negative integer features. Features selected
+              include badge counts (<code>badge_bronze</code>,
+              <code>badge_silver</code>, <code>badge_gold</code>) and reputation
+              change metrics (<code>reputation_change_day</code>,
+              <code>_week</code>, <code>_month</code>, etc.). Negative values
+              were removed, and missing values were filled with zeros.
+            </li>
+
+            <li>
+              <strong>GaussianNB:</strong> This model assumes features are
+              continuous and normally distributed. The dataset included raw
+              numeric features such as <code>accept_rate</code>,
+              <code>account_age_years</code>, and other continuous metrics like
+              reputation change history. No discretization or encoding was
+              performed here; only missing value handling was applied.
+            </li>
+
+            <li>
+              <strong>CategoricalNB:</strong> This model expects categorical
+              input features. Categorical variables such as
+              <code>user_type</code>, <code>age_group</code>, and
+              <code>is_employee</code> were label-encoded into numerical values.
+              Continuous features like <code>accept_rate</code>, badge counts,
+              and account age were discretized into quantile-based bins using
+              <code>KBinsDiscretizer</code> to convert them into categorical
+              ranges compatible with this model.
+            </li>
+          </ul>
+
+          <p>
+            Once preprocessing was complete, the data was split into training
+            and testing sets using an 80-20 stratified split. Stratified
+            sampling ensured that each subset retained the original class
+            distribution, allowing fair comparison of model performance across
+            all expertise levels.
+          </p>
+
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for MultinomialNB ad ComplementNB</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/Mutinomial_dataframe.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for GaussianNB</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/gauisan_dataframe.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for CategoricalNB</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/categorical_dataframe.png"
+            alt="data columns"
+          />
+          <p>
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Naive Bayed Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              target="_blank"
+              >Processed Dataset</a
+            >
+          </p>
+          <h1>Implementation</h1>
+          <p>
+            Each Naive Bayes model was implemented using the
+            <code>scikit-learn</code> library and trained on a processed Stack
+            Overflow user dataset to predict user expertise levels. The dataset
+            was carefully tailored for each model type, respecting the
+            assumptions and data requirements of each Naive Bayes variant. Below
+            is a breakdown of the specific preprocessing steps, model training,
+            and evaluation strategy used for each classifier.
+          </p>
+
+          <h3>1. Multinomial Naive Bayes</h3>
+          <ul>
+            <li>
+              Selected only count-based features, including badge counts
+              (<code>badge_bronze</code>, <code>badge_silver</code>,
+              <code>badge_gold</code>) and reputation change metrics across
+              various timeframes.
+            </li>
+            <li>
+              Ensured all features were non-negative integers by removing rows
+              containing negative values and filling missing entries with zeros.
+            </li>
+            <li>
+              Encoded the target variable <code>expertise_level</code> into
+              numeric labels using <code>LabelEncoder</code>.
+            </li>
+            <li>
+              Split the dataset into training and testing subsets using an 80-20
+              stratified split to preserve the original class distribution.
+            </li>
+            <li>
+              Trained the <code>MultinomialNB</code> classifier and evaluated it
+              using classification metrics including accuracy, precision,
+              recall, and F1-score.
+            </li>
+          </ul>
+
+          <h3>2. Gaussian Naive Bayes</h3>
+          <ul>
+            <li>
+              Selected continuous features such as <code>accept_rate</code>,
+              <code>account_age_years</code>, and reputation-related metrics.
+            </li>
+            <li>
+              Handled missing values by replacing them with zeros and filtered
+              out any rows with invalid or negative entries.
+            </li>
+            <li>
+              Used <code>LabelEncoder</code> to encode the target labels and
+              applied a stratified train-test split for balanced class
+              representation.
+            </li>
+            <li>
+              Trained the <code>GaussianNB</code> model, which assumes the
+              features follow a normal distribution, and evaluated the model
+              using standard classification metrics.
+            </li>
+          </ul>
+
+          <h3>3. Complement Naive Bayes</h3>
+          <ul>
+            <li>
+              Used the same non-negative count-based features as the Multinomial
+              model.
+            </li>
+            <li>
+              Handled preprocessing similarly by filtering invalid rows and
+              encoding the target variable.
+            </li>
+            <li>
+              Performed an 80-20 stratified split of the data to train and test
+              the model.
+            </li>
+            <li>
+              Trained the <code>ComplementNB</code> classifier, which is
+              designed to work better with imbalanced class distributions by
+              using information from all classes except the target class.
+            </li>
+            <li>
+              Evaluated the model using a confusion matrix, accuracy score, and
+              detailed classification report.
+            </li>
+          </ul>
+
+          <h3>4. Categorical Naive Bayes</h3>
+          <ul>
+            <li>
+              Converted categorical features such as <code>user_type</code>,
+              <code>age_group</code>, and <code>is_employee</code> into numeric
+              form using <code>LabelEncoder</code>.
+            </li>
+            <li>
+              Discretized continuous numeric features (e.g.,
+              <code>accept_rate</code>, badge counts, and account age) into
+              ordinal bins using <code>KBinsDiscretizer</code> to make them
+              suitable for categorical modeling.
+            </li>
+            <li>
+              Combined the encoded categorical variables with the binned
+              numerical features to form the input feature set.
+            </li>
+            <li>
+              Encoded the <code>expertise_level</code> target variable and
+              performed a stratified train-test split.
+            </li>
+            <li>
+              Trained the <code>CategoricalNB</code> model and assessed its
+              performance using standard classification metrics.
+            </li>
+          </ul>
+
+          <h1>Results</h1>
+          <p>
+            Each Naive Bayes model was evaluated on the test dataset using
+            accuracy, precision, recall, and F1-score metrics. Confusion
+            matrices were also plotted to visualize the prediction performance
+            across the four expertise classes: Beginner, Intermediate, Advanced,
+            and Expert. The following summarizes the key results and insights
+            for each model:
+          </p>
+
+          <h3>1. Multinomial Naive Bayes</h3>
+          <p>
+            The model achieved an overall accuracy of <strong>41.3%</strong>. It
+            performed particularly well in identifying
+            <strong>Beginner</strong> users, with a high recall of
+            <strong>0.69</strong>. It also showed strong precision
+            (<strong>0.67</strong>) for the <strong>Expert</strong> class,
+            indicating confidence when classifying users as experts. However,
+            performance on the <strong>Intermediate</strong> class was weak,
+            with a recall of only <strong>0.14</strong>. These results suggest
+            that while the model effectively distinguishes users at the
+            expertise extremes, it struggles to classify mid-level users
+            accurately.
+          </p>
+
+          <h3>2. Gaussian Naive Bayes</h3>
+          <p>
+            GaussianNB achieved a slightly lower accuracy of
+            <strong>40.4%</strong>. It showed excellent recall for
+            <strong>Beginner</strong> users (<strong>0.83</strong>) and the
+            highest precision of all models for the
+            <strong>Expert</strong> class (<strong>0.85</strong>). However, both
+            <strong>Intermediate</strong> and <strong>Advanced</strong> users
+            were often misclassified, with precision and recall values falling
+            below <strong>0.35</strong>. The model displayed strong performance
+            at the boundaries but limited capability in capturing the nuances of
+            mid-range expertise levels.
+          </p>
+
+          <h3>3. Complement Naive Bayes</h3>
+          <p>
+            The <code>ComplementNB</code> model reached an accuracy of
+            <strong>39.4%</strong>. It had an extremely high recall for
+            <strong>Beginner</strong> users (<strong>0.87</strong>) and
+            performed moderately well on <strong>Expert</strong> users. However,
+            it failed to correctly identify any <strong>Advanced</strong> users
+            and showed very poor performance on the
+            <strong>Intermediate</strong> group. This indicates that the model
+            is overly biased toward the dominant classes, highlighting potential
+            class imbalance issues and limitations in generalizing to
+            underrepresented categories.
+          </p>
+
+          <h3>4. Categorical Naive Bayes</h3>
+          <p>
+            The <code>CategoricalNB</code> model outperformed all other
+            variants, achieving the highest overall accuracy of
+            <strong>45.5%</strong>. It demonstrated strong classification
+            performance for <strong>Expert</strong> users, with a precision of
+            <strong>0.62</strong> and recall of <strong>0.71</strong>. It also
+            performed reasonably well on the <strong>Beginner</strong> class.
+            Although the <strong>Intermediate</strong> and
+            <strong>Advanced</strong> groups still had lower recall, this model
+            delivered the most balanced results, showing improved generalization
+            across all expertise levels.
+          </p>
+
+          <h1>Conclusion</h1>
+          <p>
+            The Naive Bayes classification approach proved to be effective for
+            modeling user expertise levels, especially when using categorical or
+            count-based data. Among the four models tested:
+          </p>
+          <ul>
+            <li>
+              <strong>CategoricalNB</strong> delivered the best overall
+              performance, achieving the highest accuracy and a more balanced
+              classification across all classes.
+            </li>
+            <li>
+              <strong>MultinomialNB</strong> and
+              <strong>ComplementNB</strong> were strong at identifying the
+              extremes (Beginner and Expert) but weak on mid-level classes.
+            </li>
+            <li>
+              <strong>GaussianNB</strong> worked well with continuous features
+              and showed high confidence in predictions but struggled with
+              overlapping class boundaries.
+            </li>
+          </ul>
+          <p>
+            These results highlight the importance of selecting a model that
+            aligns with the nature of the input data. Proper preprocessing—such
+            as feature selection, discretization, and encoding—is critical to
+            enabling each model to reach its full potential. For future work,
+            ensemble methods or hybrid approaches could be explored to further
+            improve performance, particularly on challenging mid-level
+            classifications.
+          </p>
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
+            >
+          </p>
+        </div>
+        <div id="decisiontree" class="model-content">
+          <h1>Overview</h1>
+          <h2>Decision Trees</h2>
+          <p>
+            A <strong>Decision Tree</strong> is a machine learning model used
+            for both <em>classification</em> and <em>regression</em> tasks. It
+            makes predictions by following a series of decision rules organized
+            in a tree-like structure. Each internal node represents a decision
+            based on a feature, each branch shows the result of the decision,
+            and each leaf node represents the final prediction.
+          </p>
+
+          <p>
+            For example, to classify a user's expertise level, the tree might
+            check values like badge counts or reputation changes and follow
+            different paths based on those values, eventually arriving at a
+            predicted category like Beginner or Expert.
+          </p>
+          <h3>Applications of Decision Trees</h3>
+
+          <p>
+            Decision Trees are widely used in practical applications such as:
+          </p>
+          <ul>
+            <li>Credit risk assessment</li>
+            <li>Medical diagnosis</li>
+            <li>Customer segmentation</li>
+            <li>Email spam detection</li>
+            <li>Classification of user expertise in online platforms</li>
+          </ul>
+
+          <h3>Gini Impurity, Entropy, and Information Gain</h3>
+
+          <p>
+            To decide which feature to split on at each step, the decision tree
+            uses impurity measures. These measures help determine how well a
+            feature separates the data.
+          </p>
+          <ul>
+            <li>
+              <strong>Gini Impurity:</strong> Measures the chance of incorrect
+              classification. Lower values indicate purer groups.
+            </li>
+            <li>
+              <strong>Entropy:</strong> Measures the disorder or randomness in
+              the data. Zero entropy means all samples are from one class.
+            </li>
+            <li>
+              <strong>Information Gain:</strong> Measures how much a split
+              improves the purity of the groups. It is calculated by subtracting
+              the weighted entropy of the split from the original entropy.
+            </li>
+          </ul>
+
+          <h3>Example of Entropy and Information Gain</h3>
+
+          <p>
+            Suppose there are 10 users: 6 are "Expert" and 4 are "Beginner".
+          </p>
+          <p>
+            <strong>Initial Entropy:</strong>
+            Entropy = -(6/10)*log₂(6/10) - (4/10)*log₂(4/10) ≈ 0.971
+          </p>
+          <p>After a split using a feature (e.g., <code>is_employee</code>):</p>
+          <ul>
+            <li>Group A: 4 Experts, 1 Beginner → Entropy ≈ 0.721</li>
+            <li>Group B: 2 Experts, 3 Beginners → Entropy ≈ 0.971</li>
+          </ul>
+
+          <p>
+            <strong>Information Gain:</strong>
+            Weighted Entropy = (5/10 * 0.721) + (5/10 * 0.971) = 0.846
+            Information Gain = 0.971 - 0.846 = 0.125
+          </p>
+
+          <p>
+            A positive Information Gain means the feature improves
+            classification and is a good choice for the split.
+          </p>
+          <h3>Possibility of Infinite Trees</h3>
+
+          <p>
+            A decision tree can keep splitting data until each leaf has only one
+            sample. This can lead to very large and complex trees, especially if
+            the dataset is large or has many unique values.
+          </p>
+
+          <p>
+            While deeper trees can perfectly fit the training data, they often
+            perform poorly on new data due to overfitting.
+          </p>
+
+          <p>
+            To avoid this, techniques such as
+            <strong>setting a maximum depth</strong>,
+            <strong>minimum samples per leaf</strong>, and
+            <strong>pruning</strong> are used to simplify the tree and improve
+            its ability to generalize.
+          </p>
+          <h1>Data Preparation</h1>
+          <p>
+            The dataset used in this project contains user-related features such
+            as badge counts, reputation history, and profile metadata. To
+            prepare the data for modeling, a new target column named
+            <code>expertise_level</code> was created by categorizing the
+            continuous <code>reputation</code> values into four levels using
+            quantile-based binning.
+          </p>
+
+          <p>
+            Irrelevant columns such as user IDs, display names, links, and raw
+            date fields were dropped to reduce noise. Categorical features like
+            <code>user_type</code>, <code>age_group</code>, and
+            <code>is_employee</code>
+            were encoded into numeric values to ensure compatibility with the
+            decision tree model.
+          </p>
+
+          <p>
+            The cleaned dataset was then split into training and testing sets
+            using an 80-20 split, with stratification applied to maintain class
+            balance. This separation ensures that the model is trained and
+            evaluated on independent data, helping prevent overfitting.
+          </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for Decision Tree</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data_for_decision_tree.png"
+            alt="data columns"
+          />
+          <p>
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Decision tree Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              target="_blank"
+              >Processed Dataset</a
+            >
+          </p>
+          <h1>Implementation</h1>
+          <p>
+            After preparing and cleaning the dataset, a Decision Tree Classifier
+            was used to predict the
+            <code>expertise_level</code> of users based on various features such
+            as badge counts, reputation changes, account age, and user activity.
+          </p>
+
+          <p>
+            The model was implemented using scikit-learn with a maximum depth of
+            4 to control complexity and prevent overfitting. The training and
+            testing sets were created using an 80-20 split with stratification
+            to preserve class distribution.
+          </p>
+
+          <p>
+            The model was trained on the training set and evaluated on the
+            testing set. The performance was assessed using accuracy, a
+            confusion matrix, and a classification report. The model achieved an
+            accuracy of <strong>46.05%</strong>. It showed strong precision in
+            predicting the "Expert" class and high recall for the "Beginner"
+            class, though it struggled with the "Intermediate" class.
+          </p>
+
+          <p>
+            The decision tree model visualizes how users are classified into
+            different expertise levels such as Beginner, Intermediate, Advanced,
+            and Expert. The tree begins with
+            <code>badge_silver</code> as the most important feature, indicating
+            that silver badge count is a key indicator of expertise. As the tree
+            branches out, it uses additional features like
+            <code>reputation_change_month</code>, <code>account_age_days</code>,
+            and <code>badge_gold</code> to make further distinctions between
+            user categories.
+          </p>
+          <p>
+            Each node represents a decision based on a feature threshold, and
+            the final prediction is made at the leaf nodes. The color shading of
+            each node reflects the model's confidence in its prediction, with
+            darker colors representing purer class distributions. The tree
+            structure highlights that the model is better at distinguishing
+            between users at the extremes (Beginner and Expert), while it
+            struggles more with mid-level classes like Intermediate and
+            Advanced.
+          </p>
+          <img
+            class="profile-image"
+            src="Website/assets/decison_tree.png"
+            alt="data columns"
+          />
+          <p>
+            Code for Model Implementation -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Decison Tree Data Preproccesing Code</a
+            >
+          </p>
+          <h1>Results</h1>
+          <p>
+            The Decision Tree classifier was evaluated on a test set after being
+            trained on user profile features. It achieved an overall accuracy of
+            46.05%. The model performed well in identifying users labeled as
+            "Beginner" and "Expert", with "Expert" achieving the highest
+            precision (0.75) and "Beginner" achieving the highest recall (0.70).
+          </p>
+          <p>
+            The confusion matrix showed that the model was able to correctly
+            classify many samples in these two classes, while users in the
+            "Intermediate" category were not correctly predicted at all. Most of
+            the Intermediate users were misclassified as Advanced or Beginner.
+            Other classes, like "Advanced", had moderate prediction performance
+            but showed noticeable overlap with neighboring expertise levels.
+          </p>
+
+          <h1>Conclusion</h1>
+          <p>
+            From the results, we can observe that the model is effective at
+            identifying users at the extremes of the expertise scale (Beginners
+            and Experts), where behavior patterns are more distinct. However, it
+            has difficulty distinguishing mid-level users like Intermediates and
+            Advanced, possibly due to overlapping profile characteristics such
+            as similar badge counts or reputation trends.
+          </p>
+          <p>
+            The outcome highlights the influence of features like badge_silver,
+            reputation_change_month, and account_age_days in shaping
+            predictions. While the model offers useful initial insights, future
+            improvements could involve deeper trees, additional features, or
+            switching to ensemble models like Random Forests for more accurate
+            and stable results.
+          </p>
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
+            >
+          </p>
+        </div>
+        <div id="Regression" class="model-content">
+          <h1>Overview</h1>
+
+          <h2>Regression</h2>
+
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
+            >
+          </p>
+        </div>
+        <div id="svm" class="model-content">
+          <h1>Overview</h1>
+
+          <h2>SVM</h2>
+
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              target="_blank"
+              >Complete Implementation</a
+            >
+          </p>
+          <p>
+            Github Repository -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project"
+              target="_blank"
+              >Link to gihub code</a
+            >
+          </p>
+        </div>
+        <div id="Ensemble" class="model-content">
+          <h1>Overview</h1>
+
+          <h2>Ensemble Methods</h2>
+
+          <p>
+            Link to complete code -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
               target="_blank"
               >Complete Implementation</a
             >
