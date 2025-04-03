@@ -796,6 +796,9 @@
           <button class="tab-btn" data-target="Ensemble">
             Ensemble Methods
           </button>
+          <button class="tab-btn" data-target="train-test-split">
+            Train-Test-Split
+          </button>
         </div>
 
         <!-- PCA Content -->
@@ -3465,6 +3468,344 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
 
           <h2>Regression</h2>
 
+          <h3>Understanding Linear Regression</h3>
+          <p>
+            Linear regression is one of the most fundamental algorithms in
+            supervised machine learning. It is used to model the relationship
+            between a dependent variable (also called the target or output) and
+            one or more independent variables (features or inputs). The
+            algorithm assumes that this relationship can be represented as a
+            straight line in the form of <em>y = mx + c</em>, where
+            <em>m</em> is the slope and <em>c</em> is the intercept. The goal of
+            linear regression is to find the best-fitting line by minimizing the
+            difference between the predicted values and the actual values in the
+            training data. This is done using the least squares method, which
+            calculates the line that minimizes the sum of squared errors. Linear
+            regression is commonly applied in forecasting trends, predicting
+            prices, and analyzing relationships between variables.
+          </p>
+
+          <h3>Understanding Logistic Regression</h3>
+          <p>
+            Logistic regression, despite its name, is a classification algorithm
+            rather than a regression one. It is used when the target variable is
+            categorical, particularly for binary classification tasks where the
+            outcome is either 0 or 1. Instead of predicting a continuous value
+            like linear regression, logistic regression predicts the probability
+            that a given input belongs to a particular class. It does this by
+            applying the sigmoid (or logistic) function to the linear
+            combination of input features, which maps the result to a value
+            between 0 and 1. If the probability is greater than a certain
+            threshold (commonly 0.5), the instance is classified as class 1,
+            otherwise as class 0. Logistic regression is widely used in
+            applications such as medical diagnosis, spam detection, and credit
+            risk modeling.
+          </p>
+
+          <h3>
+            Similarities and Differences Between Linear and Logistic Regression
+          </h3>
+          <p>
+            Both linear and logistic regression are supervised learning
+            algorithms that involve learning a linear combination of input
+            features to make predictions. They both assume a linear relationship
+            between the input variables and the output (in the case of logistic
+            regression, this relationship is with the log-odds of the outcome).
+            However, the key difference lies in their purpose and output: linear
+            regression is used for predicting continuous values, while logistic
+            regression is used for predicting class probabilities. Another
+            important distinction is in the loss function used during
+            training—linear regression minimizes mean squared error, whereas
+            logistic regression maximizes likelihood using the cross-entropy
+            loss. Additionally, logistic regression includes the sigmoid
+            function, which makes it suitable for classification tasks by
+            constraining the output to a [0,1] range.
+          </p>
+
+          <h3>The Role of the Sigmoid Function in Logistic Regression</h3>
+          <p>
+            The sigmoid function is a crucial part of logistic regression, as it
+            allows the model to convert a linear combination of input features
+            into a probability. The sigmoid function is defined as
+            <em>σ(z) = 1 / (1 + e<sup>−z</sup>)</em>, where <em>z</em> is the
+            weighted sum of input features. This function squashes any
+            real-valued number into a range between 0 and 1, making it
+            interpretable as a probability score. This is particularly useful in
+            binary classification, where predictions must reflect the likelihood
+            of belonging to class 1. Once this probability is calculated, a
+            threshold (commonly 0.5) is used to assign a final class label.
+            Without the sigmoid function, logistic regression would not be able
+            to provide meaningful class probabilities.
+          </p>
+
+          <h3>
+            Connection Between Logistic Regression and Maximum Likelihood
+            Estimation
+          </h3>
+          <p>
+            Logistic regression is trained using a statistical approach called
+            maximum likelihood estimation (MLE). The objective of MLE is to find
+            the set of parameters (weights) that make the observed data most
+            probable under the model. In logistic regression, this means
+            adjusting the model’s parameters so that the predicted probabilities
+            of the actual class labels are maximized. The likelihood function is
+            defined using the predicted probabilities for all training examples,
+            and the logarithm of this likelihood (log-likelihood) is optimized
+            during training. This optimization process ensures that the logistic
+            regression model finds parameters that best separate the classes
+            based on the input features. Unlike linear regression which uses
+            squared errors, logistic regression uses a likelihood-based
+            objective that is more suited to classification tasks.
+          </p>
+          <h1>Data Preparation</h1>
+
+          <p>
+            The reputation scores were divided into four quantile-based
+            categories labeled as Beginner, Intermediate, Advanced, and Expert
+            using the <code>qcut()</code> function. To frame this as a binary
+            classification task, these categories were then grouped into two
+            broader classes: <strong>Low Expertise</strong> (combining Beginner
+            and Intermediate) and <strong>High Expertise</strong> (combining
+            Advanced and Expert). A new column <code>expertise_binary</code> was
+            created to reflect this transformation, and the original
+            <code>expertise_level</code> and <code>reputation</code> columns
+            were dropped.
+          </p>
+
+          <p>
+            To eliminate irrelevant or non-contributory features, columns such
+            as <code>user_id</code>, <code>display_name</code>,
+            <code>profile_image</code>, <code>link</code>,
+            <code>account_id</code>, and raw date-related fields were removed.
+            These columns are either identifiers, textual, or timestamps that do
+            not directly influence classification outcomes and may introduce
+            noise.
+          </p>
+
+          <p>
+            Missing values were addressed by filling them with zero, ensuring
+            consistency across the dataset. Categorical variables were encoded
+            using label encoding to convert them into numerical values, which is
+            essential for compatibility with machine learning models. The newly
+            created binary target column <code>expertise_binary</code> was also
+            label encoded into <code>expertise_binary_encoded</code> with values
+            0 for "Low" and 1 for "High".
+          </p>
+
+          <p>
+            The final step involved splitting the dataset into training and
+            testing sets using an 80/20 ratio. Stratified sampling was applied
+            to maintain the original class distribution across both sets,
+            thereby preventing class imbalance during model evaluation. This
+            clean, encoded, and balanced dataset was then used to train and test
+            both the Logistic Regression and Multinomial Naive Bayes models.
+          </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for Regression</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data_for_decision_tree.png"
+            alt="data columns"
+          />
+          <p>
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Regression Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              target="_blank"
+              >Processed Dataset</a
+            >
+          </p>
+          <h1>Implementation</h1>
+
+          <h3>Logistic Regression</h3>
+          <p>
+            Logistic Regression was chosen as the first model for binary
+            classification of user expertise. The cleaned dataset was split into
+            training and testing sets using an 80/20 ratio with stratification
+            to preserve the class distribution. The
+            <code>LogisticRegression</code> model from scikit-learn was used
+            with a maximum iteration cap of 200 to ensure convergence. After
+            training the model on the training data, predictions were made on
+            the test set.
+          </p>
+          <p>
+            Evaluation was carried out using accuracy, precision, recall,
+            F1-score, and a confusion matrix. The results indicated that
+            Logistic Regression achieved an accuracy of <strong>73.64%</strong>.
+            It demonstrated a balanced performance across both expertise levels,
+            with strong precision and recall for both Low and High Expertise
+            categories. The model offered clear interpretability and
+            generalizability, making it a reliable baseline for classification
+            in this context.
+          </p>
+
+          <h3>Multinomial Naive Bayes</h3>
+          <p>
+            The second model implemented was Multinomial Naive Bayes, which is
+            particularly effective for categorical data and commonly used in
+            text classification problems. Since this algorithm requires all
+            input features to be non-negative, any negative values in the
+            dataset were replaced with zeros. The same training and testing
+            split was used as in the Logistic Regression model to allow for a
+            fair comparison.
+          </p>
+          <p>
+            After training, the model achieved an accuracy of
+            <strong>67.59%</strong>. While it showed high recall for the High
+            Expertise class (85%), it struggled with the Low Expertise group,
+            achieving only 50% recall, indicating a higher rate of false
+            negatives. The imbalance in class-wise performance suggests that the
+            model favored predicting High Expertise and had lower precision.
+            Despite this, Multinomial Naive Bayes remained computationally
+            efficient and simple to implement.
+          </p>
+
+          <h1>Results</h1>
+
+          <h3>Logistic Regression</h3>
+          <p>
+            The Logistic Regression model achieved an overall accuracy of
+            <strong>73.64%</strong>, indicating effective performance in
+            classifying users as either "Low Expertise" or "High Expertise." The
+            model demonstrated a good balance between precision and recall,
+            especially for the High Expertise category.
+          </p>
+          <p>
+            For Low Expertise, the model achieved a precision of 0.77 and a
+            recall of 0.67. This indicates that while most predictions labeled
+            as Low were correct, the model still missed 33% of actual Low
+            Expertise users. In contrast, High Expertise classification yielded
+            a precision of 0.71 and a recall of 0.81, showing that the model was
+            better at identifying users with high expertise.
+          </p>
+          <p>
+            The confusion matrix shows that out of 10,479 Low Expertise users,
+            6,990 were correctly classified, while 3,489 were misclassified. For
+            the 10,481 High Expertise users, 8,445 were correctly identified,
+            and 2,036 were incorrectly labeled. Overall, the model’s macro and
+            weighted averages for precision, recall, and F1-score were all
+            approximately 0.74, showing consistent and reliable performance
+            across both classes.
+          </p>
+
+          <h3>Multinomial Naive Bayes</h3>
+          <p>
+            The Multinomial Naive Bayes model achieved a lower overall accuracy
+            of <strong>67.59%</strong>, indicating moderate effectiveness in the
+            binary classification task. Although it was computationally
+            efficient, its class-wise performance was not as balanced as
+            Logistic Regression.
+          </p>
+          <p>
+            For Low Expertise, the model scored a precision of 0.77 but had a
+            significantly lower recall of 0.50, meaning that while correct
+            predictions were high when it predicted Low Expertise, half of the
+            actual Low users were misclassified. Conversely, the High Expertise
+            class had a precision of 0.63 and a higher recall of 0.85, showing a
+            bias toward identifying High Expertise users even at the cost of
+            increased false positives.
+          </p>
+          <p>
+            This imbalance is reflected in the confusion matrix, where the model
+            correctly predicted only 5,239 Low Expertise users and misclassified
+            5,240. However, for High Expertise, it correctly identified 8,905
+            out of 10,481 users. The macro average of precision, recall, and
+            F1-score ranged from 0.67 to 0.70, reinforcing the model’s tendency
+            to favor one class over another.
+          </p>
+
+          <h3>Comparison of Models</h3>
+          <p>
+            When comparing the two models, Logistic Regression outperformed
+            Multinomial Naive Bayes in both overall accuracy and class-wise
+            balance. Logistic Regression offered higher recall for Low Expertise
+            users (0.67 vs. 0.50) and better overall F1-scores across both
+            classes. This resulted in a more consistent performance, especially
+            for applications where balanced classification is important.
+          </p>
+          <p>
+            Multinomial Naive Bayes, although fast and easy to implement, showed
+            a bias toward the High Expertise class, with a higher recall (0.85)
+            but lower precision (0.63). In contrast, Logistic Regression
+            provided more reliable predictions for both groups, maintaining
+            balanced precision-recall tradeoffs.
+          </p>
+          <p>
+            In summary, Logistic Regression is the more suitable choice for this
+            classification task due to its balanced and accurate predictions. It
+            offers better interpretability and generalizability, making it
+            preferable when model fairness and performance across classes are
+            essential.
+          </p>
+
+          <h1>Summary</h1>
+
+          <p>
+            This project focused on applying supervised machine learning
+            algorithms—Logistic Regression and Multinomial Naive Bayes—to
+            classify Stack Overflow users into two broad expertise levels:
+            <strong>Low Expertise</strong> and <strong>High Expertise</strong>.
+            The classification was derived by transforming a multi-class
+            reputation-based label into a binary target, enabling focused
+            evaluation using widely-used linear and probabilistic models.
+          </p>
+
+          <p>
+            The data was preprocessed by removing irrelevant or redundant
+            features, encoding categorical variables, and ensuring non-negative
+            inputs required by Naive Bayes. Following this, both models were
+            trained and evaluated on the same dataset using an 80-20 train-test
+            split with stratification to preserve class distribution.
+          </p>
+
+          <p>
+            In terms of performance, <strong>Logistic Regression</strong> proved
+            to be more balanced and accurate with an overall accuracy of
+            <strong>73.64%</strong>. It maintained good precision and recall
+            across both classes and demonstrated better generalizability.
+            <strong>Multinomial Naive Bayes</strong>, while computationally
+            efficient, achieved a lower accuracy of <strong>67.59%</strong> and
+            showed a noticeable bias toward classifying users as High Expertise,
+            resulting in a higher false negative rate for Low Expertise users.
+          </p>
+
+          <p>
+            This comparison highlighted the importance of model selection based
+            on class balance and prediction reliability. Logistic Regression
+            emerged as a more robust model for binary classification in this
+            context, especially when fair classification of both expertise
+            groups is important.
+          </p>
+
+          <p>
+            Future enhancements may include experimenting with other
+            classification algorithms, performing hyperparameter tuning, and
+            incorporating more engineered features such as post frequency,
+            question-answer ratios, or time-based activity metrics to further
+            improve model performance and interpretability.
+          </p>
+
           <p>
             Link to complete code -
             <a
@@ -3524,6 +3865,86 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
               target="_blank"
               >Link to gihub code</a
             >
+          </p>
+        </div>
+        <div id="train-test-split" class="model-content active">
+          <h1>Train-Test Split</h1>
+
+          <p>
+            In supervised machine learning, splitting the dataset into a
+            <strong>training set</strong> and a <strong>testing set</strong> is
+            a fundamental step. This disjoint split ensures that the model
+            learns patterns from one subset of the data (training set) and is
+            evaluated on completely unseen data (testing set). This helps assess
+            the model’s generalizability and prevents overfitting, where the
+            model performs well on training data but poorly on new data.
+          </p>
+
+          <p>
+            For consistency across all models in this project, an 80/20
+            stratified train-test split was applied unless otherwise specified.
+            Stratification ensures that the distribution of classes in the
+            target variable is preserved across both the training and testing
+            datasets, which is particularly important for binary classification
+            tasks where imbalanced classes may skew performance metrics.
+          </p>
+
+          <h2>Split Configuration by Algorithm</h2>
+
+          <h3>Decision Tree (DT)</h3>
+          <p>
+            The dataset was split using an 80/20 ratio with stratified sampling.
+            This maintained class balance across train and test sets, ensuring
+            fair performance evaluation. The same split was reused for all GINI
+            and Entropy models for consistent comparison across multiple
+            decision tree configurations.
+          </p>
+
+          <h3>Logistic Regression</h3>
+          <p>
+            The same 80/20 stratified split was applied to the binary expertise
+            dataset used for regression-based classification. This ensures that
+            both "Low" and "High" expertise labels are proportionally
+            represented in both sets. This consistency was important for
+            comparing Logistic Regression with Multinomial Naive Bayes under
+            identical data conditions.
+          </p>
+
+          <h3>Multinomial Naive Bayes</h3>
+          <p>
+            Multinomial Naive Bayes used the exact same training and testing
+            split as Logistic Regression. To meet the algorithm’s requirement,
+            any negative values in the feature set were set to zero post-split.
+            Using the same split allowed for a fair side-by-side evaluation of
+            model performance.
+          </p>
+
+          <h3>Ensemble Models (To be updated)</h3>
+          <p>
+            Once ensemble models such as Random Forest or Gradient Boosted Trees
+            are implemented, this section will be updated accordingly. The
+            intent is to maintain the same 80/20 stratified split to ensure
+            performance comparability unless algorithm-specific preprocessing
+            dictates otherwise.
+          </p>
+
+          <h3>Support Vector Machines (SVMs) (To be updated)</h3>
+          <p>
+            For SVMs, a consistent stratified split will be applied. Any
+            deviation due to normalization or kernel-specific preprocessing
+            (like scaling for RBF kernels) will be documented here after
+            implementation.
+          </p>
+
+          <h2>Why Disjoint Splits Matter</h2>
+          <p>
+            Ensuring that the training and testing sets are disjoint (i.e.,
+            contain no overlapping samples) is critical for unbiased evaluation.
+            If the same samples are seen during both training and testing,
+            performance metrics will be inflated and not reflective of
+            real-world deployment. A clean, disjoint test set simulates unseen
+            data, allowing accurate assessment of how the model will generalize
+            to new inputs.
           </p>
         </div>
       </section>
