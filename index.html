@@ -2987,127 +2987,220 @@
         <div id="decisiontree" class="model-content">
           <h1>Overview</h1>
           <h2>Decision Trees</h2>
-          <p>
-            A <strong>Decision Tree</strong> is a machine learning model used
-            for both <em>classification</em> and <em>regression</em> tasks. It
-            makes predictions by following a series of decision rules organized
-            in a tree-like structure. Each internal node represents a decision
-            based on a feature, each branch shows the result of the decision,
-            and each leaf node represents the final prediction.
-          </p>
 
           <p>
-            For example, to classify a user's expertise level, the tree might
-            check values like badge counts or reputation changes and follow
-            different paths based on those values, eventually arriving at a
-            predicted category like Beginner or Expert.
+            A <strong>Decision Tree</strong> is a type of supervised machine
+            learning algorithm used for both <em>classification</em> and
+            <em>regression</em> tasks. The core idea is to split data based on
+            feature values into subsets that are increasingly homogeneous with
+            respect to the target variable. It mimics human decision-making by
+            asking a sequence of if-else questions, forming a tree-like
+            structure.
           </p>
-          <h3>Applications of Decision Trees</h3>
+
+          <img
+            src="your-image-path/tree-structure-example.png"
+            alt="Decision Tree Example"
+            width="500"
+          />
 
           <p>
-            Decision Trees are widely used in practical applications such as:
+            In a decision tree, each <strong>internal node</strong> corresponds
+            to a decision based on a feature, each
+            <strong>branch</strong> represents the outcome of that decision, and
+            each <strong>leaf node</strong> gives the final prediction.
           </p>
+
+          <h2>How Decision Trees Work</h2>
+          <p>
+            The training process involves selecting the best feature at each
+            step to split the data into smaller subsets. This continues
+            recursively until a stopping condition is met. For example, in a
+            tree predicting Stack Overflow user expertise, a decision node might
+            check <code>badge_silver > 50</code> and branch accordingly.
+          </p>
+
+          <img
+            src="your-image-path/simple-decision-path.png"
+            alt="Simple Decision Path Example"
+            width="500"
+          />
+
+          <h2>Common Applications of Decision Trees</h2>
           <ul>
-            <li>Credit risk assessment</li>
-            <li>Medical diagnosis</li>
-            <li>Customer segmentation</li>
-            <li>Email spam detection</li>
-            <li>Classification of user expertise in online platforms</li>
+            <li>Medical diagnosis (e.g., predicting disease risk)</li>
+            <li>Credit scoring and risk analysis</li>
+            <li>Spam detection in emails</li>
+            <li>Customer segmentation in marketing</li>
+            <li>
+              Expertise classification of online users (like Stack Overflow)
+            </li>
           </ul>
 
-          <h3>Gini Impurity, Entropy, and Information Gain</h3>
-
+          <h2>Splitting Criteria: Gini, Entropy, and Information Gain</h2>
           <p>
-            To decide which feature to split on at each step, the decision tree
-            uses impurity measures. These measures help determine how well a
-            feature separates the data.
+            To decide which feature to split on at each node, decision trees use
+            a criterion that measures how "pure" each resulting group is. Two
+            common impurity measures are <strong>Gini Impurity</strong> and
+            <strong>Entropy</strong>.
           </p>
+
+          <h3>Gini Impurity</h3>
+          <p>
+            Gini measures the probability of a random sample being incorrectly
+            labeled if it was randomly classified according to the distribution
+            of labels in the subset. A lower Gini value means higher purity.
+          </p>
+
+          <h3>Entropy</h3>
+          <p>
+            Entropy measures the amount of uncertainty or disorder. A subset
+            with only one class has zero entropy. The formula for entropy is:
+          </p>
+          <pre>
+Entropy(S) = -∑ (pᵢ * log₂(pᵢ))
+</pre
+          >
+
+          <h3>Information Gain</h3>
+          <p>
+            Information Gain is the reduction in entropy achieved by
+            partitioning the data using a particular feature. It is calculated
+            as:
+          </p>
+          <pre>
+Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
+</pre
+          >
+
+          <h3>Example: Using Entropy and Information Gain</h3>
+          <p>Suppose we have 10 users: 6 are "Expert" and 4 are "Beginner".</p>
           <ul>
             <li>
-              <strong>Gini Impurity:</strong> Measures the chance of incorrect
-              classification. Lower values indicate purer groups.
-            </li>
-            <li>
-              <strong>Entropy:</strong> Measures the disorder or randomness in
-              the data. Zero entropy means all samples are from one class.
-            </li>
-            <li>
-              <strong>Information Gain:</strong> Measures how much a split
-              improves the purity of the groups. It is calculated by subtracting
-              the weighted entropy of the split from the original entropy.
+              <strong>Initial Entropy:</strong> - (6/10)log₂(6/10) -
+              (4/10)log₂(4/10) ≈ <strong>0.971</strong>
             </li>
           </ul>
 
-          <h3>Example of Entropy and Information Gain</h3>
-
-          <p>
-            Suppose there are 10 users: 6 are "Expert" and 4 are "Beginner".
-          </p>
-          <p>
-            <strong>Initial Entropy:</strong>
-            Entropy = -(6/10)*log₂(6/10) - (4/10)*log₂(4/10) ≈ 0.971
-          </p>
-          <p>After a split using a feature (e.g., <code>is_employee</code>):</p>
+          <p>Now we split based on the <code>is_employee</code> feature:</p>
           <ul>
             <li>Group A: 4 Experts, 1 Beginner → Entropy ≈ 0.721</li>
             <li>Group B: 2 Experts, 3 Beginners → Entropy ≈ 0.971</li>
           </ul>
 
+          <p><strong>Weighted Entropy:</strong></p>
+          <pre>
+= (5/10 * 0.721) + (5/10 * 0.971) = 0.846
+</pre
+          >
+
           <p>
-            <strong>Information Gain:</strong>
-            Weighted Entropy = (5/10 * 0.721) + (5/10 * 0.971) = 0.846
-            Information Gain = 0.971 - 0.846 = 0.125
+            <strong>Information Gain:</strong> 0.971 - 0.846 =
+            <strong>0.125</strong>
           </p>
 
           <p>
-            A positive Information Gain means the feature improves
-            classification and is a good choice for the split.
-          </p>
-          <h3>Possibility of Infinite Trees</h3>
-
-          <p>
-            A decision tree can keep splitting data until each leaf has only one
-            sample. This can lead to very large and complex trees, especially if
-            the dataset is large or has many unique values.
+            A higher Information Gain indicates a better split. In this case,
+            splitting by <code>is_employee</code> improves the separation of
+            classes, but not by a lot. This helps the model decide if this is
+            the best feature to split on at this node.
           </p>
 
+          <h2>Why Decision Trees Can Become Infinitely Deep</h2>
           <p>
-            While deeper trees can perfectly fit the training data, they often
-            perform poorly on new data due to overfitting.
+            Without constraints, a decision tree could keep splitting until each
+            leaf node contains only one data point. This results in a tree that
+            perfectly fits the training data, known as
+            <strong>overfitting</strong>.
           </p>
 
           <p>
-            To avoid this, techniques such as
-            <strong>setting a maximum depth</strong>,
-            <strong>minimum samples per leaf</strong>, and
-            <strong>pruning</strong> are used to simplify the tree and improve
-            its ability to generalize.
+            For instance, if your dataset contains 10,000 unique user records
+            with subtle differences, the tree could grow very deep to capture
+            all those variations. This makes it complex, hard to interpret, and
+            likely to perform poorly on new (test) data.
           </p>
+
+          <h3>How to Prevent Overfitting</h3>
+          <p>
+            To avoid building excessively large trees, we use parameters such
+            as:
+          </p>
+          <ul>
+            <li>
+              <strong>max_depth</strong> - Maximum depth of the tree (e.g., 3 or
+              5)
+            </li>
+            <li>
+              <strong>min_samples_split</strong> - Minimum samples required to
+              split a node
+            </li>
+            <li>
+              <strong>min_samples_leaf</strong> - Minimum samples required in a
+              leaf node
+            </li>
+            <li>
+              <strong>pruning</strong> - Reducing the size of the tree after it
+              has been built
+            </li>
+          </ul>
           <h1>Data Preparation</h1>
           <p>
-            The dataset used in this project contains user-related features such
-            as badge counts, reputation history, and profile metadata. To
-            prepare the data for modeling, a new target column named
-            <code>expertise_level</code> was created by categorizing the
-            continuous <code>reputation</code> values into four levels using
-            quantile-based binning.
+            The dataset used for decision tree modeling consists of Stack
+            Overflow user profile attributes, including reputation metrics,
+            badge counts, account age, and user demographic data. To facilitate
+            classification modeling, the continuous reputation variable was
+            transformed into a categorical target variable named
+            <code>expertise_level</code>. This was achieved by applying a
+            quantile-based discretization strategy that divided users into four
+            equally sized categories: Beginner, Intermediate, Advanced, and
+            Expert. This transformation enabled the application of supervised
+            learning methods designed for multi-class classification tasks.
           </p>
 
           <p>
-            Irrelevant columns such as user IDs, display names, links, and raw
-            date fields were dropped to reduce noise. Categorical features like
-            <code>user_type</code>, <code>age_group</code>, and
-            <code>is_employee</code>
-            were encoded into numeric values to ensure compatibility with the
-            decision tree model.
+            Prior to modeling, several columns deemed irrelevant to the
+            predictive task were removed. These included user identifiers (e.g.,
+            <code>user_id</code>, <code>account_id</code>), textual or URL-based
+            fields (e.g., <code>display_name</code>, <code>link</code>,
+            <code>profile_image</code>), and raw datetime variables (e.g.,
+            <code>creation_date</code>, <code>last_access_date</code>).
+            Additionally, redundant or overly granular features such as daily
+            and weekly reputation changes were excluded. The remaining
+            attributes—such as badge counts, broader reputation change summaries
+            (monthly, quarterly, yearly), <code>accept_rate</code>,
+            <code>account_age_days</code>, and <code>age_group</code>—were
+            retained as predictive features.
           </p>
 
           <p>
-            The cleaned dataset was then split into training and testing sets
-            using an 80-20 split, with stratification applied to maintain class
-            balance. This separation ensures that the model is trained and
-            evaluated on independent data, helping prevent overfitting.
+            Data cleaning procedures were applied to handle missing values and
+            ensure compatibility with the decision tree algorithm. Numerical
+            attributes were filled with zeroes where missing, and categorical
+            variables were label-encoded to convert them into integer-based
+            formats. These steps ensured that all feature values were numeric,
+            as required for training decision tree classifiers in scikit-learn.
           </p>
+
+          <p>
+            To support generalizable evaluation, the dataset was partitioned
+            into training and testing sets using an 80-20 split. Stratified
+            sampling was applied to preserve the proportion of classes within
+            both subsets, thereby preventing class imbalance issues during model
+            evaluation. The training set was used to fit the decision tree
+            models, while the test set remained disjoint to provide an unbiased
+            assessment of model performance.
+          </p>
+
+          <p>
+            A visual inspection of the prepared datasets confirms that the data
+            is clean, fully numeric, and structured appropriately for
+            classification modeling. This preprocessing approach ensures that
+            the decision tree algorithm can interpret and split data
+            effectively, enabling the extraction of meaningful patterns for
+            expertise level prediction.
+          </p>
+
           <h3>Raw Data</h3>
           <img
             class="profile-image"
@@ -3145,97 +3238,211 @@
             >
           </p>
           <h1>Implementation</h1>
+          <h3>Model 1 - GINI (All Features, Max Depth = 3)</h3>
           <p>
-            After preparing and cleaning the dataset, a Decision Tree Classifier
-            was used to predict the
-            <code>expertise_level</code> of users based on various features such
-            as badge counts, reputation changes, account age, and user activity.
+            The first decision tree was constructed using the GINI impurity
+            criterion and incorporated all available features. The model was
+            limited to a maximum depth of 3 and achieved an accuracy of
+            <strong>45.72%</strong>. It performed well at identifying
+            <strong>Beginner</strong> users, demonstrating high recall, and also
+            showed strong precision and recall for the
+            <strong>Expert</strong> category. However, it struggled with
+            <strong>Intermediate</strong> users, failing to classify any
+            correctly, and showed limited success with the
+            <strong>Advanced</strong> group. The root node selected was
+            <code>badge_silver</code>, indicating its significant influence in
+            distinguishing expertise levels. While interpretable, the limited
+            depth may have prevented the model from capturing more complex
+            patterns across all classes.
           </p>
-
-          <p>
-            The model was implemented using scikit-learn with a maximum depth of
-            4 to control complexity and prevent overfitting. The training and
-            testing sets were created using an 80-20 split with stratification
-            to preserve class distribution.
-          </p>
-
-          <p>
-            The model was trained on the training set and evaluated on the
-            testing set. The performance was assessed using accuracy, a
-            confusion matrix, and a classification report. The model achieved an
-            accuracy of <strong>46.05%</strong>. It showed strong precision in
-            predicting the "Expert" class and high recall for the "Beginner"
-            class, though it struggled with the "Intermediate" class.
-          </p>
-
-          <p>
-            The decision tree model visualizes how users are classified into
-            different expertise levels such as Beginner, Intermediate, Advanced,
-            and Expert. The tree begins with
-            <code>badge_silver</code> as the most important feature, indicating
-            that silver badge count is a key indicator of expertise. As the tree
-            branches out, it uses additional features like
-            <code>reputation_change_month</code>, <code>account_age_days</code>,
-            and <code>badge_gold</code> to make further distinctions between
-            user categories.
-          </p>
-          <p>
-            Each node represents a decision based on a feature threshold, and
-            the final prediction is made at the leaf nodes. The color shading of
-            each node reflects the model's confidence in its prediction, with
-            darker colors representing purer class distributions. The tree
-            structure highlights that the model is better at distinguishing
-            between users at the extremes (Beginner and Expert), while it
-            struggles more with mid-level classes like Intermediate and
-            Advanced.
-          </p>
+          <h3>Decision Tree for model - 1</h3>
           <img
             class="profile-image"
-            src="Website/assets/decison_tree.png"
+            src="Website/assets/dt1.png"
             alt="data columns"
           />
+
+          <h3>Model 2 - GINI (Excluding Root of Model 1)</h3>
+          <p>
+            The second decision tree excluded <code>badge_silver</code>—the most
+            influential feature in Model 1—to encourage variation in tree
+            structure. The model was also trained with the GINI criterion and a
+            maximum depth of 3. The resulting root node became
+            <code>badge_bronze</code>, shifting the focus of the model. It
+            achieved a slightly lower accuracy of <strong>43.02%</strong>. The
+            model continued to perform well in classifying
+            <strong>Expert</strong> users and moderately for
+            <strong>Beginner</strong> users. However, like the previous model,
+            it completely failed to identify <strong>Intermediate</strong> users
+            and had limited accuracy on <strong>Advanced</strong> users. This
+            variation highlights how the exclusion of a key feature affects the
+            decision-making structure and class balance.
+          </p>
+          <h3>Decision Tree - model 2</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/dt2.png"
+            alt="data columns"
+          />
+
+          <h3>Model 3 - Entropy (Excluding Roots of Model 1 & 2)</h3>
+          <p>
+            In the third model, both <code>badge_silver</code> and
+            <code>badge_bronze</code> were excluded to force the decision tree
+            to use alternate features for its root and subsequent splits. This
+            tree used the <strong>Entropy</strong> criterion instead of GINI and
+            maintained the same maximum depth of 3. The model produced an
+            overall accuracy of <strong>41.34%</strong>. Notably, it showed
+            improved performance for the <strong>Intermediate</strong> class
+            with a recall of 41%, which had been entirely misclassified in the
+            previous two models. The root feature was <code>badge_gold</code>,
+            with further splits involving reputation change metrics. While
+            slightly lower in overall accuracy, this model offered a more
+            balanced classification across all expertise levels, indicating
+            better generalization in identifying diverse user types.
+          </p>
+          <h3>Decision Tree - model 3</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/dt3.png"
+            alt="data columns"
+          />
+
           <p>
             Code for Model Implementation -
             <a
               href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
               target="_blank"
-              >Decison Tree Data Preproccesing Code</a
+              >Decison Tree Data Implementation Code</a
             >
           </p>
           <h1>Results</h1>
+
+          <h3>Model 1: Decision Tree Using GINI (All Features)</h3>
           <p>
-            The Decision Tree classifier was evaluated on a test set after being
-            trained on user profile features. It achieved an overall accuracy of
-            46.05%. The model performed well in identifying users labeled as
-            "Beginner" and "Expert", with "Expert" achieving the highest
-            precision (0.75) and "Beginner" achieving the highest recall (0.70).
+            The first model was trained using the GINI impurity criterion with
+            all available features and a maximum tree depth of 3. It achieved an
+            accuracy of <strong>45.72%</strong>. Performance was strongest for
+            the <strong>Beginner</strong> and <strong>Expert</strong> classes,
+            with high recall and precision, particularly in correctly
+            identifying users at the two extremes of the expertise spectrum.
           </p>
           <p>
-            The confusion matrix showed that the model was able to correctly
-            classify many samples in these two classes, while users in the
-            "Intermediate" category were not correctly predicted at all. Most of
-            the Intermediate users were misclassified as Advanced or Beginner.
-            Other classes, like "Advanced", had moderate prediction performance
-            but showed noticeable overlap with neighboring expertise levels.
+            The model struggled with the <strong>Intermediate</strong> category,
+            where no instances were correctly classified, and showed mixed
+            performance on <strong>Advanced</strong> users. The root node
+            selected was <code>badge_silver</code>, suggesting that this badge
+            type played the most significant role in the initial classification
+            split. The confusion matrix showed that many
+            <strong>Intermediate</strong> and <strong>Advanced</strong> users
+            were misclassified into the <strong>Beginner</strong> or
+            <strong>Expert</strong> categories, potentially due to overlapping
+            feature distributions and the limited tree depth.
+          </p>
+
+          <h3>
+            Model 2: Decision Tree Using GINI (Excluding Root Feature of Model
+            1)
+          </h3>
+          <p>
+            To analyze the effect of individual features on model performance,
+            the second decision tree was trained after removing
+            <code>badge_silver</code>, the root node of the first model. This
+            encouraged the model to explore different decision paths. The new
+            tree used <code>badge_bronze</code> as the root and maintained the
+            GINI criterion with the same depth constraint.
+          </p>
+          <p>
+            The accuracy dropped slightly to <strong>43.02%</strong>. Similar to
+            the first model, <strong>Expert</strong> users were classified with
+            the highest accuracy, followed by <strong>Beginner</strong> users.
+            However, there was no improvement in recognizing
+            <strong>Intermediate</strong> users, and classification of
+            <strong>Advanced</strong> users remained limited. The results
+            highlight the sensitivity of decision trees to root feature
+            selection and the influence of feature hierarchy on downstream
+            splits.
+          </p>
+
+          <h3>
+            Model 3: Decision Tree Using Entropy (Excluding Roots of Models 1 &
+            2)
+          </h3>
+          <p>
+            The third model was designed to diversify the root structure by
+            excluding both <code>badge_silver</code> and
+            <code>badge_bronze</code>, the initial split features in Models 1
+            and 2. This tree used the <strong>Entropy</strong> criterion instead
+            of GINI and retained the maximum depth of 3.
+          </p>
+          <p>
+            The overall accuracy was <strong>41.34%</strong>, slightly lower
+            than the previous models, but the performance was more balanced
+            across the four classes. The model correctly identified a
+            significant number of <strong>Intermediate</strong> users, which had
+            not been the case in earlier models. Additionally,
+            <strong>Expert</strong> and <strong>Beginner</strong> predictions
+            remained relatively accurate. The root node chosen was
+            <code>badge_gold</code>, indicating that this feature provided the
+            highest information gain among the remaining set.
+          </p>
+          <p>
+            The improved detection of <strong>Intermediate</strong> users and
+            use of temporal activity metrics such as
+            <code>reputation_change_month</code> and
+            <code>reputation_change_quarter</code> suggest that a combination of
+            behavioral features and refined splitting criteria can enhance
+            performance in classifying mid-range expertise levels.
           </p>
 
           <h1>Conclusion</h1>
+
           <p>
-            From the results, we can observe that the model is effective at
-            identifying users at the extremes of the expertise scale (Beginners
-            and Experts), where behavior patterns are more distinct. However, it
-            has difficulty distinguishing mid-level users like Intermediates and
-            Advanced, possibly due to overlapping profile characteristics such
-            as similar badge counts or reputation trends.
+            This decision tree modeling exercise offered valuable insights into
+            classifying Stack Overflow users based on their activity and
+            reputation attributes. Through a systematic implementation of three
+            decision tree models, it was possible to observe the effects of
+            feature selection, splitting criteria, and tree depth on
+            classification outcomes.
           </p>
+
           <p>
-            The outcome highlights the influence of features like badge_silver,
-            reputation_change_month, and account_age_days in shaping
-            predictions. While the model offers useful initial insights, future
-            improvements could involve deeper trees, additional features, or
-            switching to ensemble models like Random Forests for more accurate
-            and stable results.
+            Model 1, which included all features and used the GINI criterion,
+            provided a baseline performance with the highest accuracy among the
+            three models. It showed strong classification capability for users
+            at the extremes of the expertise spectrum but struggled to
+            distinguish mid-level classes such as Intermediate and Advanced.
+            This highlighted the impact of class overlap and limited model
+            depth.
           </p>
+
+          <p>
+            Model 2 demonstrated how excluding a dominant root feature
+            (badge_silver) prompted the tree to reconfigure its decision-making
+            process. Although the overall accuracy slightly declined, this model
+            reinforced the influence of feature hierarchy and suggested that
+            certain features play a pivotal role in classification structure.
+          </p>
+
+          <p>
+            Model 3 introduced an Entropy-based criterion and excluded the
+            primary root features used in previous models. While the accuracy
+            was slightly lower, this model achieved better balance across all
+            four classes, particularly improving recognition of the Intermediate
+            class. The use of temporal and behavioral features in this model
+            emphasized the importance of diversified feature sets when dealing
+            with multi-class problems.
+          </p>
+
+          <p>
+            Overall, the analysis underlined several key learning outcomes: the
+            role of impurity measures in splitting decisions, the
+            interpretability of decision tree structures, and the trade-offs
+            between accuracy, depth, and feature inclusion. It also demonstrated
+            the challenges in distinguishing between closely related classes and
+            the potential of ensemble or deeper models for future improvements.
+          </p>
+
           <p>
             Link to complete code -
             <a
