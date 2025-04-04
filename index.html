@@ -3828,6 +3828,318 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
 
           <h2>SVM</h2>
 
+          <h2>What are SVMs?</h2>
+          <p>
+            Support Vector Machines (SVMs) are powerful supervised machine
+            learning models used for both classification and regression tasks.
+            The main objective of an SVM is to find an optimal boundary—called a
+            <strong>hyperplane</strong>—that best separates different classes in
+            the dataset. For binary classification, this hyperplane is a line
+            (in 2D) or a flat surface (in higher dimensions) that maximizes the
+            margin between the two classes.
+          </p>
+          <p>
+            The closest data points to the hyperplane from each class are known
+            as <strong>support vectors</strong>. These support vectors are
+            crucial in defining the decision boundary and influence the
+            orientation and position of the hyperplane.
+          </p>
+
+          <h2>Why SVMs are Linear Separators</h2>
+          <p>
+            In their basic form, SVMs function as linear classifiers. They look
+            for the straight line (or hyperplane) that separates the two classes
+            with the maximum margin. This makes SVMs linear separators when
+            working with linearly separable data. However, most real-world
+            datasets are not linearly separable, and SVMs address this by using
+            <strong>kernel functions</strong> to project data into
+            higher-dimensional spaces where a linear separator can be applied.
+          </p>
+
+          <h2>Kernel Functions and the Importance of the Dot Product</h2>
+          <p>
+            The kernel function enables SVMs to work in higher-dimensional
+            feature spaces without explicitly transforming the data. This is
+            achieved through the <strong>kernel trick</strong>, which computes
+            the <strong>dot product</strong> of data points in the transformed
+            space efficiently. The dot product is central because it allows the
+            SVM to evaluate similarity in the high-dimensional space without
+            computing the coordinates explicitly.
+          </p>
+          <p>
+            By evaluating the dot product in the transformed space, kernels help
+            capture non-linear relationships while still allowing the SVM to
+            operate using a linear classifier in this new space.
+          </p>
+
+          <h2>Popular Kernel Types</h2>
+
+          <h3>Polynomial Kernel</h3>
+          <p>
+            The polynomial kernel enables the SVM to fit curved boundaries by
+            including interactions between features. Its mathematical form is:
+          </p>
+          <p>
+            <code>K(x, y) = (x · y + r)<sup>d</sup></code>
+          </p>
+          <p>
+            Where <code>x · y</code> is the dot product of the input vectors,
+            <code>r</code> is a constant (often 1), and <code>d</code> is the
+            degree of the polynomial. Higher degrees lead to more complex
+            decision boundaries.
+          </p>
+
+          <h3>Radial Basis Function (RBF) Kernel</h3>
+          <p>
+            The RBF kernel, also known as the Gaussian kernel, is useful for
+            capturing intricate decision boundaries. Its formula is:
+          </p>
+          <p><code>K(x, y) = exp(-γ ||x - y||²)</code></p>
+          <p>
+            Here, <code>γ</code> controls the width of the Gaussian function,
+            and <code>||x - y||²</code> is the squared Euclidean distance
+            between vectors <code>x</code> and <code>y</code>. RBF kernels are
+            effective when the relationship between class labels and features is
+            highly non-linear.
+          </p>
+
+          <h2>Example: Mapping a 2D Point Using Polynomial Kernel</h2>
+          <p>
+            Suppose we have a 2D input vector <code>x = (x₁, x₂)</code>. Using a
+            polynomial kernel with <code>r = 1</code> and <code>d = 2</code>, we
+            can map this vector into a higher-dimensional space:
+          </p>
+          <p>
+            The transformed feature vector becomes:
+            <code>(x₁², √2·x₁·x₂, x₂², √2·x₁, √2·x₂, 1)</code>
+          </p>
+          <p>
+            This allows the SVM to draw a linear decision boundary in this 6D
+            space, which translates to a non-linear curve in the original 2D
+            space. This is how SVMs handle non-linearly separable data using
+            kernels.
+          </p>
+
+          <h2>Visual Aids</h2>
+          <ul>
+            <li>
+              <strong>Image 1:</strong> Linear SVM showing a straight-line
+              boundary with support vectors highlighted.
+            </li>
+            <li>
+              <strong>Image 2:</strong> RBF kernel SVM demonstrating a curved
+              boundary separating two complex classes.
+            </li>
+          </ul>
+          <p>
+            These visualizations highlight how SVMs adjust their decision
+            boundaries depending on the kernel used and the underlying structure
+            of the data.
+          </p>
+          <h1>Data Preparation</h1>
+
+          <p>
+            For SVM modeling, the dataset underwent essential preprocessing
+            steps to ensure compatibility with supervised learning requirements.
+            Irrelevant and non-contributory columns—such as user identifiers,
+            textual display names, URLs, timestamps, and other metadata—were
+            dropped to remove noise and enhance feature clarity.
+          </p>
+
+          <p>
+            Categorical features were label-encoded to transform text values
+            into numerical format. Missing values were filled with zeroes to
+            maintain data consistency. The target column,
+            <code>expertise_binary</code>, indicating user expertise level as
+            either "Low" or "High", was label-encoded into
+            <code>expertise_binary_encoded</code> with 0 and 1 values,
+            respectively.
+          </p>
+
+          <p>
+            An 80/20 train-test split was applied using stratified sampling to
+            preserve the original distribution of the target classes across both
+            subsets. This stratification is crucial to ensure unbiased model
+            training and evaluation. As SVMs are sensitive to feature scaling,
+            standardization was performed using <code>StandardScaler</code> to
+            normalize all feature values to a standard range.
+          </p>
+
+          <p>
+            The same train-test split and scaled dataset were used consistently
+            across all three SVM kernel experiments (Linear, Polynomial, and
+            RBF) to ensure fair comparison of model performance. All features
+            were numeric and properly labeled, satisfying SVM's strict input
+            requirements.
+          </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for Regression</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data_for_decision_tree.png"
+            alt="data columns"
+          />
+          <p>
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >Regression Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              target="_blank"
+              >Processed Dataset</a
+            >
+          </p>
+
+          <h1>Implementation</h1>
+          <p>
+            To perform classification using Support Vector Machines (SVM), we
+            implemented three kernel types—Linear, Polynomial, and Radial Basis
+            Function (RBF)—on the prepared dataset. After preprocessing, the
+            data was split into an 80/20 train-test ratio using stratified
+            sampling to maintain balanced class distributions. Standardization
+            was then applied to ensure all features had the same scale, which is
+            essential for SVM to perform optimally.
+          </p>
+
+          <p>
+            The first model used a <strong>Linear kernel</strong> with a
+            regularization parameter (C) of 1. This model achieved an accuracy
+            of <strong>74.98%</strong>. It was particularly strong in detecting
+            high expertise users with a recall of 0.85, though it missed some
+            low expertise cases. The linear kernel provided a strong and
+            interpretable baseline.
+          </p>
+
+          <p>
+            Next, a <strong>Polynomial kernel</strong> with degree 3 and C = 1
+            was applied. This model slightly underperformed compared to the
+            linear version, with an accuracy of <strong>73.23%</strong>. It
+            exhibited balanced performance across classes but did not
+            significantly improve overall classification. This suggests that
+            introducing non-linearity helped capture complex patterns but also
+            added slight overfitting.
+          </p>
+
+          <p>
+            Finally, the <strong>RBF kernel</strong> (C = 1, gamma = 'scale')
+            yielded the highest accuracy of <strong>75.65%</strong>. It showed a
+            strong ability to identify high expertise users (recall: 0.87) while
+            maintaining good precision. Although it slightly underperformed in
+            identifying low expertise users (recall: 0.64), its overall
+            generalization was superior. The RBF kernel's performance suggests
+            it is well-suited for this classification task.
+          </p>
+
+          <p>
+            A comparative bar chart was created to visualize the performance of
+            each kernel. The results highlighted that kernel choice
+            significantly impacts model performance, with the RBF kernel
+            standing out as the most effective in this context.
+          </p>
+
+          <p>
+            This implementation demonstrates the impact of different kernels on
+            classification tasks and provides a framework for evaluating SVM
+            models through accuracy, precision, recall, and confusion matrices.
+          </p>
+          <h1>Results</h1>
+          <p>
+            The Support Vector Machine (SVM) models were evaluated based on
+            their ability to classify users into Low and High Expertise
+            categories. Each model used a different kernel—Linear, Polynomial,
+            and RBF—to explore how different transformations of the input space
+            affect classification performance.
+          </p>
+
+          <p>
+            The <strong>Linear kernel</strong> achieved an accuracy of
+            <strong>74.98%</strong>, demonstrating solid overall performance. It
+            was particularly effective in identifying High Expertise users with
+            a recall of 0.85, though it was slightly less accurate with Low
+            Expertise users. The confusion matrix indicated a higher number of
+            misclassifications for the Low class, suggesting that the linear
+            decision boundary may not fully capture the underlying complexity of
+            the data.
+          </p>
+
+          <p>
+            The <strong>Polynomial kernel</strong> reached an accuracy of
+            <strong>73.23%</strong>. It provided fairly balanced precision and
+            recall across both classes, with minor improvements in Low Expertise
+            predictions compared to the linear model. However, the overall
+            improvement was not significant, which suggests that the added
+            complexity of polynomial transformation did not lead to better
+            generalization for this specific dataset.
+          </p>
+
+          <p>
+            The <strong>RBF kernel</strong> performed the best, achieving an
+            accuracy of <strong>75.65%</strong>. It delivered high recall for
+            High Expertise users (0.87) while maintaining good precision for
+            both classes. Although it slightly underperformed in detecting Low
+            Expertise users, it provided the most balanced and generalizable
+            results overall. The confusion matrix further supported this,
+            showing that the RBF model was the most effective in reducing false
+            positives and capturing true positives across the board.
+          </p>
+
+          <p>
+            A comparative bar chart illustrated the accuracy of all three
+            kernels, clearly highlighting the superiority of the RBF kernel for
+            this task. These results demonstrate how different kernel choices
+            influence model effectiveness and support the selection of the RBF
+            kernel for optimal classification performance.
+          </p>
+          <h1>Summary</h1>
+          <p>
+            This project applied Support Vector Machines (SVMs) to a binary
+            classification task of predicting user expertise levels. Three
+            different kernels—Linear, Polynomial, and RBF—were tested to assess
+            their effectiveness in separating Low and High Expertise categories
+            based on user data. The data was thoroughly cleaned, encoded, and
+            standardized to meet the requirements of the SVM algorithm.
+          </p>
+
+          <p>
+            The evaluation revealed that the
+            <strong>RBF kernel</strong> delivered the best overall performance,
+            achieving an accuracy of <strong>75.65%</strong> and strong recall
+            for High Expertise users. The <strong>Linear kernel</strong> also
+            performed well with <strong>74.98%</strong> accuracy, making it a
+            strong baseline model. The <strong>Polynomial kernel</strong>, while
+            capable of modeling non-linear relationships, provided the lowest
+            performance in this context with an accuracy of
+            <strong>73.23%</strong>.
+          </p>
+
+          <p>
+            This comparison highlights the importance of kernel selection when
+            using SVMs, as different kernels can significantly impact
+            classification performance. The RBF kernel's ability to capture
+            complex patterns in the data makes it particularly suitable for this
+            use case. Future work could explore hyperparameter tuning, feature
+            selection, or ensemble methods to further enhance performance.
+          </p>
+
           <p>
             Link to complete code -
             <a
@@ -3849,6 +4161,283 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <h1>Overview</h1>
 
           <h2>Ensemble Methods</h2>
+
+          <h2>Concept and Purpose</h2>
+          <p>
+            Ensemble learning is a machine learning approach that combines
+            multiple models to produce a single, more accurate and stable
+            predictive outcome. The goal is to enhance performance by reducing
+            errors that individual models might make due to bias, variance, or
+            limited complexity. This strategy is particularly effective when
+            dealing with complex datasets, as it leverages the strengths of
+            various base models.
+          </p>
+
+          <h2>Improving Accuracy with Ensembles</h2>
+          <p>
+            By aggregating the predictions of several models, ensemble
+            techniques create a more generalized solution than any single model
+            could provide. This collective approach improves accuracy and
+            reduces overfitting, making ensemble learning a powerful tool in
+            both classification and regression tasks.
+          </p>
+
+          <h2>Common Ensemble Techniques</h2>
+
+          <h3>Bagging (Bootstrap Aggregating)</h3>
+          <p>
+            Bagging involves training multiple instances of a base estimator on
+            different random subsets of the data, drawn with replacement.
+            Predictions are combined through averaging (for regression) or
+            majority voting (for classification). Random Forest is a well-known
+            bagging technique that uses decision trees as base learners.
+          </p>
+
+          <h3>Boosting</h3>
+          <p>
+            Boosting builds models sequentially, where each new model focuses on
+            correcting the errors of the previous one. This technique gradually
+            improves performance by emphasizing difficult cases. AdaBoost,
+            Gradient Boosting, and XGBoost are common boosting algorithms.
+          </p>
+
+          <h3>Stacking</h3>
+          <p>
+            Stacking combines multiple models by training a meta-model that
+            learns to blend the predictions of the base models. Each base model
+            contributes its output to the final decision, allowing diverse
+            learning algorithms to collaborate effectively.
+          </p>
+
+          <h3>Voting</h3>
+          <p>
+            Voting ensembles combine predictions from different models by
+            selecting the most frequent class label (hard voting) or by
+            averaging probability scores (soft voting). This technique is
+            straightforward and useful when multiple strong but diverse models
+            are available.
+          </p>
+
+          <h2>Use in Classification Tasks</h2>
+          <p>
+            Ensemble learning is widely applied in scenarios that require
+            reliable and accurate predictions, including fraud detection, spam
+            filtering, recommendation systems, and medical diagnosis. In
+            classification tasks, these methods are particularly useful for
+            handling imbalanced or noisy data by improving prediction
+            robustness.
+          </p>
+
+          <h2>Application in the Current Project</h2>
+          <p>
+            The ensemble learning approach was applied to classify Stack
+            Overflow users into binary expertise levels: Low and High. Two
+            ensemble methods—Random Forest and AdaBoost—were implemented and
+            compared using a preprocessed and scaled dataset. Each model was
+            trained on the same training set and evaluated using accuracy,
+            classification reports, and confusion matrices.
+          </p>
+
+          <h2>Visual Representation</h2>
+          <p>
+            The diagram below illustrates how ensemble models integrate outputs
+            from multiple weak learners to form a strong final prediction.
+          </p>
+          <img
+            src="assets/ensemble_structure.png"
+            alt="Ensemble Learning Structure"
+            width="600"
+          />
+
+          <p>
+            A separate visual comparison of accuracy scores achieved by each
+            ensemble method highlights the performance of different techniques.
+          </p>
+          <img
+            src="assets/ensemble_accuracy_chart.png"
+            alt="Ensemble Model Accuracy Chart"
+            width="600"
+          />
+          <h1>Data Preparation</h1>
+
+          <h2>Data Cleaning and Transformation</h2>
+          <p>
+            The original dataset included various user-specific details such as
+            user IDs, display names, account links, and profile metadata. Since
+            these attributes do not contribute meaningfully to the predictive
+            task, they were removed during the cleaning phase. Additionally, any
+            missing values present in the dataset were filled with zeros to
+            maintain consistency and avoid training disruptions.
+          </p>
+
+          <h2>Target Label Creation</h2>
+          <p>
+            The reputation scores in the dataset were segmented into four
+            quantile-based categories: Beginner, Intermediate, Advanced, and
+            Expert. These were then grouped into two broader classes—Low
+            Expertise (Beginner + Intermediate) and High Expertise (Advanced +
+            Expert)—to simplify the problem into a binary classification task. A
+            new column was added to store these binary labels.
+          </p>
+
+          <h2>Encoding and Feature Engineering</h2>
+          <p>
+            To ensure compatibility with machine learning algorithms, all
+            categorical features were encoded into numerical values using label
+            encoding. This step is essential as most ensemble models like Random
+            Forest and AdaBoost require purely numeric input features. The
+            binary target label was also encoded into a new numeric column for
+            model training.
+          </p>
+
+          <h2>Train-Test Split</h2>
+          <p>
+            The cleaned and encoded dataset was split into training and testing
+            sets using an 80/20 ratio. Stratified sampling was applied to
+            preserve the class distribution across both sets. This helps ensure
+            that both the training and testing sets reflect the same proportions
+            of Low and High Expertise users, which is crucial for evaluating
+            model performance reliably.
+          </p>
+
+          <h2>Feature Scaling</h2>
+          <p>
+            Ensemble methods such as Random Forest do not require feature
+            scaling, but for consistency across all ensemble models,
+            particularly for methods like AdaBoost and gradient-based
+            approaches, standard scaling was applied to normalize the features.
+            This step transforms all features to have zero mean and unit
+            variance, improving convergence and stability for some models.
+          </p>
+
+          <h2>Visual Snapshots</h2>
+          <p>
+            Below are sample snapshots of the data before and after
+            preprocessing, showing the cleaned structure and the final set of
+            features used for modeling.
+          </p>
+          <h1>Implementation</h1>
+          <p>
+            The implementation of ensemble learning models began with
+            preprocessing the dataset to prepare it for classification. After
+            encoding categorical variables and scaling numerical features, the
+            dataset was split into training and testing sets using an 80/20
+            stratified approach. This ensured balanced representation of both
+            classes—Low and High Expertise—across the sets. Standard scaling was
+            applied to normalize feature ranges, which is particularly helpful
+            for ensemble models like AdaBoost.
+          </p>
+          <p>
+            Two popular ensemble learning techniques were implemented: Random
+            Forest and AdaBoost. The Random Forest classifier was configured
+            with 100 decision trees to perform bagging and reduce variance by
+            combining multiple predictions. The AdaBoost classifier, on the
+            other hand, was built using a series of weak learners—specifically
+            shallow decision trees with a maximum depth of 1—and iteratively
+            adjusted weights to focus on previously misclassified instances.
+          </p>
+          <p>
+            Both models were trained on the scaled training data and evaluated
+            on the test set using metrics such as accuracy, precision, recall,
+            and F1-score. Additionally, confusion matrices were plotted to
+            visually analyze the performance of each model. A final comparison
+            chart was created to show overall accuracy across the ensemble
+            methods and evaluate their relative effectiveness. This structured
+            approach enabled a fair and interpretable comparison of ensemble
+            learning techniques for binary expertise classification.
+          </p>
+          <h1>Results</h1>
+
+          <h2>Random Forest Results</h2>
+          <p>
+            The <strong>Random Forest</strong> classifier achieved an overall
+            accuracy of <strong>75.01%</strong>, reflecting strong and balanced
+            classification performance. For the <em>Low Expertise</em> class, it
+            achieved a precision of <strong>0.77</strong> and recall of
+            <strong>0.71</strong>, indicating reliable identification with some
+            missed cases. For the <em>High Expertise</em> class, the recall was
+            <strong>0.79</strong> and precision was <strong>0.73</strong>,
+            showing effectiveness in retrieving high expertise users.
+          </p>
+          <p>
+            The confusion matrix shows <strong>7,467</strong> correctly
+            identified Low Expertise users and <strong>8,255</strong> High
+            Expertise users. The macro F1-score of
+            <strong>0.75</strong> supports the model's consistency and balance
+            across both classes.
+          </p>
+
+          <h2>AdaBoost Results</h2>
+          <p>
+            The <strong>AdaBoost</strong> classifier produced similar
+            performance with an accuracy of <strong>74.81%</strong>. It showed a
+            precision of <strong>0.78</strong> and recall of
+            <strong>0.69</strong> for the <em>Low Expertise</em> class. For
+            <em>High Expertise</em>, the model achieved a recall of
+            <strong>0.81</strong> and precision of <strong>0.72</strong>,
+            suggesting it was more effective at classifying high expertise
+            users.
+          </p>
+          <p>
+            According to the confusion matrix, <strong>7,213</strong> Low
+            Expertise and <strong>8,467</strong> High Expertise users were
+            correctly classified. The macro average F1-score of
+            <strong>0.75</strong> confirms consistent and balanced performance,
+            with a slight bias toward High Expertise predictions.
+          </p>
+
+          <h2>Model Comparison</h2>
+          <p>
+            The bar chart below compares the accuracy of both ensemble models:
+          </p>
+          <ul>
+            <li><strong>Random Forest:</strong> 75.01%</li>
+            <li><strong>AdaBoost:</strong> 74.81%</li>
+          </ul>
+          <p>
+            Both models demonstrated closely matched performance. Random Forest
+            offered a slightly higher accuracy and stronger class balance, while
+            AdaBoost excelled in identifying High Expertise users. These
+            findings highlight how ensemble methods can improve predictive
+            performance through different strengths and decision strategies.
+          </p>
+
+          <h1>Summary</h1>
+
+          <p>
+            This section explored ensemble learning methods applied to a binary
+            classification problem involving user expertise levels. Two
+            widely-used ensemble techniques—<strong>Random Forest</strong> and
+            <strong>AdaBoost</strong>—were implemented and evaluated using a
+            standardized dataset. Both models demonstrated comparable
+            performance, each achieving an overall accuracy close to
+            <strong>75%</strong>.
+          </p>
+
+          <p>
+            Random Forest showed a more balanced classification across the two
+            classes, while AdaBoost slightly favored identifying users in the
+            High Expertise category. The precision-recall trade-offs and
+            confusion matrices offered insight into each model's strengths,
+            allowing for a clearer understanding of model behavior in real-world
+            scenarios.
+          </p>
+
+          <p>
+            The comparative accuracy chart visualized the marginal difference
+            between the two ensemble approaches. These results underscore the
+            effectiveness of ensemble learning techniques in improving
+            classification accuracy and robustness, especially when working with
+            diverse and high-dimensional datasets.
+          </p>
+
+          <p>
+            Overall, ensemble methods serve as powerful tools for refining
+            prediction models. Future enhancements may include experimenting
+            with additional ensemble strategies such as Gradient Boosting,
+            Stacking, or Voting Classifiers to further boost performance and
+            interpretability.
+          </p>
 
           <p>
             Link to complete code -
