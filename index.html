@@ -3894,114 +3894,145 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
 
           <h2>SVM</h2>
 
-          <!-- <h2>What are SVMs?</h2>
+          <h2>What are SVMs?</h2>
           <p>
             Support Vector Machines (SVMs) are powerful supervised machine
-            learning models used for both classification and regression tasks.
-            The main objective of an SVM is to find an optimal boundary—called a
-            <strong>hyperplane</strong>—that best separates different classes in
-            the dataset. For binary classification, this hyperplane is a line
-            (in 2D) or a flat surface (in higher dimensions) that maximizes the
-            margin between the two classes.
-          </p>
-          <p>
-            The closest data points to the hyperplane from each class are known
-            as <strong>support vectors</strong>. These support vectors are
-            crucial in defining the decision boundary and influence the
-            orientation and position of the hyperplane.
-          </p>
-
-          <h2>Why SVMs are Linear Separators</h2>
-          <p>
-            In their basic form, SVMs function as linear classifiers. They look
-            for the straight line (or hyperplane) that separates the two classes
-            with the maximum margin. This makes SVMs linear separators when
-            working with linearly separable data. However, most real-world
-            datasets are not linearly separable, and SVMs address this by using
-            <strong>kernel functions</strong> to project data into
-            higher-dimensional spaces where a linear separator can be applied.
+            learning models widely used for both classification and regression
+            tasks. The fundamental objective of an SVM is to identify the
+            optimal decision boundary—known as a hyperplane—that best separates
+            different classes in the dataset. In two dimensions, this hyperplane
+            is a line, while in higher dimensions, it becomes a flat geometric
+            surface. What makes SVMs unique is their focus on maximizing the
+            margin, which is the distance between the hyperplane and the closest
+            data points from each class. These closest points are referred to as
+            support vectors, and they play a critical role in defining the
+            position and orientation of the decision boundary. By maximizing
+            this margin, SVMs improve their ability to generalize well on unseen
+            data.
           </p>
 
-          <h2>Kernel Functions and the Importance of the Dot Product</h2>
+          <h2>The Role of Linear Separation</h2>
           <p>
-            The kernel function enables SVMs to work in higher-dimensional
-            feature spaces without explicitly transforming the data. This is
-            achieved through the <strong>kernel trick</strong>, which computes
-            the <strong>dot product</strong> of data points in the transformed
-            space efficiently. The dot product is central because it allows the
-            SVM to evaluate similarity in the high-dimensional space without
-            computing the coordinates explicitly.
-          </p>
-          <p>
-            By evaluating the dot product in the transformed space, kernels help
-            capture non-linear relationships while still allowing the SVM to
-            operate using a linear classifier in this new space.
+            In their default form, SVMs function as linear classifiers. This
+            means they attempt to find a straight-line separator (in 2D) or a
+            flat hyperplane (in higher-dimensional space) that can cleanly
+            divide the dataset into distinct classes. This makes them highly
+            effective for linearly separable data, where such a boundary can
+            easily be drawn. However, in many real-world scenarios, data is not
+            linearly separable. To handle these complex datasets, SVMs use
+            kernel functions to project the data into higher-dimensional feature
+            spaces. In this transformed space, the data often becomes linearly
+            separable, allowing SVMs to draw a flat hyperplane which, when
+            mapped back to the original space, corresponds to a curved and more
+            flexible boundary.
           </p>
 
-          <h2>Popular Kernel Types</h2>
-
-          <h3>Polynomial Kernel</h3>
+          <h2>The Importance of Dot Product and the Kernel Trick</h2>
           <p>
-            The polynomial kernel enables the SVM to fit curved boundaries by
-            including interactions between features. Its mathematical form is:
+            Central to the functioning of SVMs, especially in non-linear cases,
+            is the concept of the dot product. The dot product measures the
+            similarity between two vectors and is a core operation in the
+            optimization process of SVMs. In kernel-based SVMs, the dot product
+            is not computed directly on the original feature vectors. Instead,
+            the SVM leverages what is called the kernel trick. This technique
+            allows the algorithm to compute the dot product in a
+            higher-dimensional space without explicitly performing the
+            transformation of the data into that space. The kernel function
+            takes two input vectors and returns the value of their dot product
+            in the transformed space. This implicit computation enables SVMs to
+            remain computationally efficient while still capturing complex,
+            non-linear relationships in the data.
           </p>
+          <h2>Understanding Kernel Functions</h2>
           <p>
+            Kernel functions are mathematical tools that allow SVMs to operate
+            in high-dimensional feature spaces without incurring the
+            computational cost of actually transforming the input data. One
+            commonly used kernel is the <strong>polynomial kernel</strong>,
+            which introduces interactions between features to model non-linear
+            boundaries. The polynomial kernel is defined as:
+          </p>
+
+          <p style="margin-left: 2em">
             <code>K(x, y) = (x · y + r)<sup>d</sup></code>
           </p>
+
           <p>
-            Where <code>x · y</code> is the dot product of the input vectors,
+            where <code>x · y</code> is the dot product between the vectors,
             <code>r</code> is a constant (often 1), and <code>d</code> is the
-            degree of the polynomial. Higher degrees lead to more complex
-            decision boundaries.
+            degree of the polynomial. A higher degree leads to more complex and
+            flexible decision boundaries.
           </p>
 
-          <h3>Radial Basis Function (RBF) Kernel</h3>
           <p>
-            The RBF kernel, also known as the Gaussian kernel, is useful for
-            capturing intricate decision boundaries. Its formula is:
-          </p>
-          <p><code>K(x, y) = exp(-γ ||x - y||²)</code></p>
-          <p>
-            Here, <code>γ</code> controls the width of the Gaussian function,
-            and <code>||x - y||²</code> is the squared Euclidean distance
-            between vectors <code>x</code> and <code>y</code>. RBF kernels are
-            effective when the relationship between class labels and features is
-            highly non-linear.
+            Another popular option is the
+            <strong>Radial Basis Function (RBF) kernel</strong>, also known as
+            the Gaussian kernel. The RBF kernel is defined as:
           </p>
 
-          <h2>Example: Mapping a 2D Point Using Polynomial Kernel</h2>
-          <p>
-            Suppose we have a 2D input vector <code>x = (x₁, x₂)</code>. Using a
-            polynomial kernel with <code>r = 1</code> and <code>d = 2</code>, we
-            can map this vector into a higher-dimensional space:
+          <p style="margin-left: 2em">
+            <code>K(x, y) = exp(-γ ||x - y||²)</code>
           </p>
+
           <p>
-            The transformed feature vector becomes:
+            where <code>γ</code> is a parameter that determines the spread of
+            the kernel, and <code>||x − y||²</code> is the squared Euclidean
+            distance between the two vectors. The RBF kernel is especially
+            effective in cases where the relationship between class labels and
+            features is highly non-linear.
+          </p>
+          <h2>Feature Mapping Using a Polynomial Kernel</h2>
+          <p>
+            To illustrate how kernels work, consider a 2D input vector
+            <code>x = (x₁, x₂)</code>. Using a polynomial kernel with parameters
+            <code>r = 1</code> and <code>d = 2</code>, this input is implicitly
+            mapped into a 6-dimensional feature space. The transformed vector
+            becomes:
+          </p>
+
+          <p style="margin-left: 2em">
             <code>(x₁², √2·x₁·x₂, x₂², √2·x₁, √2·x₂, 1)</code>
           </p>
-          <p>
-            This allows the SVM to draw a linear decision boundary in this 6D
-            space, which translates to a non-linear curve in the original 2D
-            space. This is how SVMs handle non-linearly separable data using
-            kernels.
-          </p>
 
-          <h2>Visual Aids</h2>
-          <ul>
-            <li>
-              <strong>Image 1:</strong> Linear SVM showing a straight-line
-              boundary with support vectors highlighted.
-            </li>
-            <li>
-              <strong>Image 2:</strong> RBF kernel SVM demonstrating a curved
-              boundary separating two complex classes.
-            </li>
-          </ul>
           <p>
-            These visualizations highlight how SVMs adjust their decision
-            boundaries depending on the kernel used and the underlying structure
-            of the data.
+            This transformation captures second-order interactions between the
+            features and adds linear and constant terms, allowing the SVM to
+            separate the data using a flat hyperplane in this higher-dimensional
+            space. When this hyperplane is projected back into the original 2D
+            space, it forms a non-linear curve, enabling the SVM to distinguish
+            between classes that were not linearly separable before. This
+            example highlights how kernel functions empower SVMs to handle
+            complex patterns without the burden of explicitly computing the
+            higher-dimensional representation.
           </p>
+          <h2>Visualizing Linear and Non-Linear SVMs</h2>
+          <p>
+            The behavior of SVMs can be best understood through visual examples.
+            In the case of a linear SVM applied to linearly separable data, the
+            model identifies a straight-line decision boundary that cleanly
+            divides the two classes. The margin on either side of the boundary
+            is maximized, and the support vectors lie exactly on the boundary
+            lines. In contrast, when using an SVM with an RBF kernel, the
+            decision boundary is no longer a straight line. Instead, it bends
+            and adapts to the data's structure, forming complex, curved
+            boundaries that separate the classes more accurately. These
+            visualizations underscore the adaptability of SVMs when equipped
+            with different kernel functions and reveal how kernels allow SVMs to
+            model both simple and intricate patterns.
+          </p>
+          <h3>Linear SVM</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/svm_1.png"
+            alt="data columns"
+          />
+          <h3>Non Linear SVM</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/svm_2.png"
+            alt="data columns"
+          />
+
           <h1>Data Preparation</h1>
 
           <p>
@@ -4044,18 +4075,31 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             src="Website/assets/cleaned_data.png"
             alt="data columns"
           />
-          <h3>Cleaned Data for Regression</h3>
+          <h3>Cleaned Data for SVM</h3>
           <img
             class="profile-image"
-            src="Website/assets/cleaned_data_for_decision_tree.png"
+            src="Website/assets/svm_cleaned.png"
             alt="data columns"
           />
+          <h3>Training Data for SVM</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/svm_train.png"
+            alt="data columns"
+          />
+          <h3>Testing Data for SVM</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/svm_test.png"
+            alt="data columns"
+          />
+
           <p>
             Code for preproccesing -
             <a
               href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
               target="_blank"
-              >Regression Data Preproccesing Code</a
+              >SVM Data Preproccesing Code</a
             >
           </p>
           <p>
@@ -4221,14 +4265,14 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
               target="_blank"
               >Link to github code</a
             >
-          </p> -->
+          </p>
         </div>
         <div id="Ensemble" class="model-content">
           <h1>Overview</h1>
 
           <h2>Ensemble Methods</h2>
 
-          <!-- <h2>Concept and Purpose</h2>
+          <h2>Concept and Purpose</h2>
           <p>
             Ensemble learning is a machine learning approach that combines
             multiple models to produce a single, more accurate and stable
@@ -4520,7 +4564,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
               target="_blank"
               >Link to github code</a
             >
-          </p> -->
+          </p>
         </div>
         <div id="train-test-split" class="model-content active">
           <h1>Train-Test Split</h1>
@@ -4604,7 +4648,6 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
         </div>
       </section>
 
-      <!-- Conclusion Section -->
       <section id="conclusion" class="page-section">
         <h1>Conclusion</h1>
         <p>The conclusion will be added in future milestones.</p>
@@ -4673,7 +4716,6 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
       </section>
     </div>
 
-    <!-- JavaScript to handle section switching -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // Main navigation switching logic
