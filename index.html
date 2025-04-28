@@ -4625,27 +4625,27 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           />
           <h3>Training data sample</h3>
           <img
-            src="assets/ensemble_test_Data.png"
-            alt="Ensemble Learning Structure"
+            class="profile-image"
+            src="Website/assets/ensemble_test_Data.png"
             alt="data columns"
           />
           <h3>Testing data sample</h3>
           <img
-            src="assets/ensemble_x_test.png"
-            alt="Ensemble Learning Structure"
+            class="profile-image"
+            src="Website/assets/ensemble_x_test.png"
             alt="data columns"
           />
           <h3>Label data sample</h3>
           <img
-            src="assets/ensemble_y_train.png"
-            alt="Ensemble Learning Structure"
+            class="profile-image"
+            src="Website/assets/ensemble_y_train.png"
             alt="data columns"
           />
 
           <p>
             Code for preproccesing -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/ensemble_method_impl.ipynb"
               target="_blank"
               >SVM Data Preproccesing Code</a
             >
@@ -4661,7 +4661,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             Link to proccessed dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/X_train_scaled.csv"
               target="_blank"
               >Processed Dataset</a
             >
@@ -4861,7 +4861,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             Link to complete code -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/ensemble_method_impl.ipynb"
               target="_blank"
               >Complete Implementation</a
             >
@@ -4959,7 +4959,88 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
 
       <section id="conclusion" class="page-section">
         <h1>Conclusion</h1>
-        <p>The conclusion will be added in future milestones.</p>
+        <p>
+          This project demonstrated the application of machine learning
+          techniques to predict user expertise levels based on Stack Overflow
+          profile attributes. The primary objective was to classify users as
+          either Low or High Expertise by leveraging activity-based features
+          such as reputation metrics, badge counts, and account longevity. A
+          structured methodology involving data preprocessing, model training,
+          and evaluation ensured that the outcomes were both reliable and
+          generalizable.
+        </p>
+
+        <p>
+          Multiple machine learning models, including Decision Trees, Logistic
+          Regression, Support Vector Machines (SVMs), and Ensemble Methods, were
+          implemented and assessed. Each model was carefully evaluated using
+          consistent train-test splits and standardized preprocessing pipelines
+          to ensure a fair comparison. Results indicated that while baseline
+          models such as Decision Trees and Logistic Regression provided strong
+          interpretability, ensemble models delivered superior predictive
+          performance.
+        </p>
+
+        <img
+          src="Website/assets/ensemble_structure.png"
+          alt="Ensemble Structure"
+          class="profile-image"
+        />
+
+        <p>
+          Among the ensemble techniques tested, XGBoost achieved the highest
+          classification accuracy of approximately 75.63%, followed closely by
+          Random Forest and AdaBoost. XGBoost demonstrated strong precision and
+          recall across both classes, highlighting its robustness in binary
+          classification tasks where class distributions are relatively
+          balanced. The use of ensemble methods not only improved overall
+          performance but also reduced model variance and enhanced
+          generalization to unseen data.
+        </p>
+
+        <p>
+          A key takeaway from this project was the critical importance of
+          comprehensive data preparation. Removing irrelevant features,
+          addressing missing values, encoding categorical variables, and
+          applying feature scaling were essential steps that significantly
+          contributed to model stability and accuracy. Furthermore, maintaining
+          stratified sampling during the train-test split preserved class
+          distributions and allowed for more accurate performance evaluation
+          across different user expertise levels.
+        </p>
+
+        <p>
+          The comparative analysis of different algorithms highlighted the
+          strengths and trade-offs of each approach. While simpler models
+          offered faster training times and ease of interpretation, more complex
+          ensemble models provided the necessary sophistication to capture
+          nuanced patterns in the data. Kernel-based SVMs, particularly using
+          the RBF kernel, also demonstrated competitive performance but required
+          careful tuning of hyperparameters.
+        </p>
+
+        <img
+          src="Website/assets/ensemble_accuracy_chart.png"
+          alt="Ensemble Accuracy Chart"
+          class="profile-image"
+        />
+
+        <p>
+          In conclusion, this project underscores the value of ensemble learning
+          and methodical data preprocessing in achieving high-performing machine
+          learning solutions. Future work may involve extending the feature set
+          with additional user behavioral metrics, performing hyperparameter
+          optimization, and exploring more advanced ensemble frameworks such as
+          stacking or blended models. The results validate that a rigorous,
+          end-to-end pipeline from data preparation to model evaluation is
+          critical for developing reliable and scalable predictive systems.
+        </p>
+        <h3>Model Accuracy Comparison</h3>
+        <img
+          class="profile-image"
+          src="Website/assets/ensemble_accuracy_chart.png"
+          alt="Ensemble Accuracy Chart"
+        />
       </section>
       <section id="aboutme" class="page-section">
         <h1>About</h1>
