@@ -3995,6 +3995,11 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           </p>
 
           <p>
+            For example, if <code>x = (2, 3)</code>, the transformed vector
+            becomes <code>(4, √2×2×3, 9, √2×2, √2×3, 1)</code>.
+          </p>
+
+          <p>
             This transformation captures second-order interactions between the
             features and adds linear and constant terms, allowing the SVM to
             separate the data using a flat hyperplane in this higher-dimensional
@@ -4437,14 +4442,26 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <h2>Ensemble Methods</h2>
 
           <h2>Concept and Purpose</h2>
+
           <p>
-            Ensemble learning is a machine learning approach that combines
-            multiple models to produce a single, more accurate and stable
-            predictive outcome. The objective is to enhance performance by
-            reducing errors caused by bias, variance, or limited model
-            complexity. This strategy is particularly effective when dealing
-            with complex datasets, as it leverages the complementary strengths
-            of various base models.
+            Ensemble learning is a powerful machine learning strategy that
+            combines the predictions of multiple individual models to produce a
+            single, stronger, and more accurate outcome. Instead of relying on a
+            single model, ensemble methods aggregate the outputs of several
+            "weak learners"—simple models that perform moderately well on their
+            own—to build a "strong learner" that achieves better overall
+            performance. This approach helps reduce errors due to bias,
+            variance, and model instability, resulting in models that generalize
+            better to unseen data.
+          </p>
+
+          <p>
+            Common ensemble techniques include bagging (e.g., Random Forest),
+            boosting (e.g., AdaBoost, XGBoost), and stacking. Ensemble learning
+            is especially effective when working with complex datasets because
+            it leverages the complementary strengths of different models,
+            delivering more robust, stable, and accurate predictions in
+            real-world applications.
           </p>
 
           <h2>Improving Accuracy with Ensembles</h2>
@@ -4594,12 +4611,60 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             standardize the feature values to have zero mean and unit variance,
             improving model stability and convergence behavior.
           </p>
+          <h3>Raw Data</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/cleaned_data.png"
+            alt="data columns"
+          />
+          <h3>Cleaned Data for SVM</h3>
+          <img
+            class="profile-image"
+            src="Website/assets/ensemble_test_Data.png"
+            alt="data columns"
+          />
+          <h3>Training data sample</h3>
+          <img
+            src="assets/ensemble_test_Data.png"
+            alt="Ensemble Learning Structure"
+            alt="data columns"
+          />
+          <h3>Testing data sample</h3>
+          <img
+            src="assets/ensemble_x_test.png"
+            alt="Ensemble Learning Structure"
+            alt="data columns"
+          />
+          <h3>Label data sample</h3>
+          <img
+            src="assets/ensemble_y_train.png"
+            alt="Ensemble Learning Structure"
+            alt="data columns"
+          />
 
-          <h2>Visual Snapshots</h2>
           <p>
-            Below are visual snapshots showcasing the dataset before and after
-            preprocessing, highlighting the changes made to clean, encode, and
-            scale the features used for training the ensemble models.
+            Code for preproccesing -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              target="_blank"
+              >SVM Data Preproccesing Code</a
+            >
+          </p>
+          <p>
+            Link to raw dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/cleaned_user_data.csv"
+              target="_blank"
+              >Raw Dataset</a
+            >
+          </p>
+          <p>
+            Link to proccessed dataset -
+            <a
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              target="_blank"
+              >Processed Dataset</a
+            >
           </p>
 
           <h1>Implementation</h1>
