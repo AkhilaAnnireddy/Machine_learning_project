@@ -4163,7 +4163,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             Code for preproccesing -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/arm_model_impl.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/svm_model_impl.ipynb"
               target="_blank"
               >SVM Data Preproccesing Code</a
             >
@@ -4179,7 +4179,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             Link to proccessed dataset -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/user_data_cleaned_for_arm.csv"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Dataset/train_data%20svm.csv"
               target="_blank"
               >Processed Dataset</a
             >
@@ -4234,7 +4234,13 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             expertise prediction.
           </p>
 
-          <
+          Link to Implementation code -
+          <a
+            href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/svm_model_impl.ipynb"
+            target="_blank"
+            >Implementation</a
+          >
+
           <h1>Results</h1>
 
           <p>
@@ -4248,7 +4254,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             The <strong>Linear kernel</strong> achieved the best performance at
             <strong>C=0.1</strong>, with an approximate accuracy of
-            <strong>73–74%</strong>. It was particularly effective in
+            <strong>73-74%</strong>. It was particularly effective in
             identifying High Expertise users, showing strong recall, but
             struggled slightly with Low Expertise classification. The confusion
             matrices indicated that the linear decision boundary was simple and
@@ -4288,7 +4294,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             The <strong>Polynomial kernel</strong> performed slightly lower
             compared to the Linear kernel, with accuracies around
-            <strong>72–73%</strong> across different C values. While the
+            <strong>72-73%</strong> across different C values. While the
             polynomial transformation allowed the model to capture some
             non-linear relationships, it did not lead to significant
             improvements in overall performance and showed minor overfitting
@@ -4328,7 +4334,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             The <strong>RBF kernel</strong> consistently delivered the best
             results across all tested C values, achieving an accuracy close to
-            <strong>74–75%</strong> at <strong>C=0.1</strong>. It showed high
+            <strong>74-75%</strong> at <strong>C=0.1</strong>. It showed high
             recall for High Expertise users while maintaining good precision
             across both classes. Confusion matrices for the RBF model
             demonstrated better separation of classes compared to Linear and
@@ -4364,7 +4370,33 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             src="Website/assets/svm_rbf3_cm.png"
             alt="data columns"
           />
-
+          <p>
+            Support Vector Machines (SVMs) with different kernels create
+            decision boundaries that vary in complexity and adaptability. A
+            linear kernel generates straightforward boundaries that work well
+            for data that is almost linearly separable, though it might not
+            capture more intricate patterns. Polynomial kernels allow for more
+            flexible, curved boundaries, but they can sometimes overfit when the
+            data is noisy or moderately complex. Radial Basis Function (RBF)
+            kernels typically provide a good balance, handling non-linear
+            relationships effectively while still generalizing well, making them
+            a versatile choice for a wide range of classification tasks.
+          </p>
+          <img
+            class="profile-image"
+            src="Website/assets/svm_b1.png"
+            alt="data columns"
+          />
+          <img
+            class="profile-image"
+            src="Website/assets/svm_b2.png"
+            alt="data columns"
+          />
+          <img
+            class="profile-image"
+            src="Website/assets/svm_b3.png"
+            alt="data columns"
+          />
           <p>
             A comparative accuracy plot illustrated the trend that the RBF
             kernel consistently outperformed the Linear and Polynomial kernels
@@ -4392,7 +4424,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             The evaluation revealed that the
             <strong>RBF kernel</strong> achieved the most reliable performance,
-            reaching approximately <strong>74–75%</strong> accuracy while
+            reaching approximately <strong>74-75%</strong> accuracy while
             maintaining a strong balance between precision and recall. The
             <strong>Linear kernel</strong> provided simpler decision boundaries
             and generalized well but had slightly lower classification ability
@@ -4413,7 +4445,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
           <p>
             Link to complete code -
             <a
-              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/pca_model_impl.ipynb"
+              href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/svm_model_impl.ipynb"
               target="_blank"
               >Complete Implementation</a
             >
@@ -4539,22 +4571,14 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             learning model, where multiple base learners are combined to
             generate a stronger overall prediction.
           </p>
-
           <img
-            src="assets/ensemble_structure.png"
-            alt="Ensemble Learning Structure"
+            class="profile-image"
+            src="Website/assets/ensemble_1.png"
             alt="data columns"
           />
-
-          <p>
-            Additionally, a visual comparison of the accuracy scores achieved by
-            Random Forest and AdaBoost highlights the differences in performance
-            across the ensemble methods.
-          </p>
-
           <img
-            src="assets/ensemble_accuracy_chart.png"
-            alt="Ensemble Model Accuracy Chart"
+            class="profile-image"
+            src="Website/assets/ensemble_2.png"
             alt="data columns"
           />
 
@@ -4647,7 +4671,7 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             <a
               href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/ensemble_method_impl.ipynb"
               target="_blank"
-              >SVM Data Preproccesing Code</a
+              >Ensemble method Data Preproccesing Code</a
             >
           </p>
           <p>
@@ -4744,6 +4768,13 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             method in predicting user expertise levels.
           </p>
 
+          Link to Implementation code -
+          <a
+            href="https://github.com/AkhilaAnnireddy/Machine_learning_project/blob/main/Models/ensemble_method_impl.ipynb"
+            target="_blank"
+            >Implementation</a
+          >
+
           <h1>Results</h1>
 
           <h2>Random Forest Results</h2>
@@ -4765,6 +4796,16 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             <strong>0.75</strong> further supports the model's consistency and
             balance across both classes.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/rf_accuracy.png"
+            alt="data columns"
+          />
+          <img
+            class="profile-image"
+            src="Website/assets/rf_cm.png"
+            alt="data columns"
+          />
 
           <h2>AdaBoost Results</h2>
           <p>
@@ -4783,6 +4824,16 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             <strong>0.75</strong> indicates balanced and stable performance,
             with a slight bias toward high expertise identification.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/ada_accuracy.png"
+            alt="data columns"
+          />
+          <img
+            class="profile-image"
+            src="Website/assets/ada_Cm.png"
+            alt="data columns"
+          />
 
           <h2>XGBoost Results</h2>
           <p>
@@ -4802,7 +4853,16 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             slightly higher than that of Random Forest and AdaBoost, confirming
             XGBoost’s stronger generalization performance.
           </p>
-
+          <img
+            class="profile-image"
+            src="Website/assets/xg_accuracy.png"
+            alt="data columns"
+          />
+          <img
+            class="profile-image"
+            src="Website/assets/xgboost_cm.png"
+            alt="data columns"
+          />
           <h2>Model Comparison</h2>
           <p>
             The bar chart below compares the overall accuracy of all three
@@ -4822,6 +4882,11 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
             slightly biased towards identifying high expertise users more
             effectively.
           </p>
+          <img
+            class="profile-image"
+            src="Website/assets/ensemble_comp.png"
+            alt="data columns"
+          />
 
           <h1>Summary</h1>
 
@@ -4958,89 +5023,96 @@ Information Gain = Entropy(Parent) - Weighted Average Entropy(Children)
       </section>
 
       <section id="conclusion" class="page-section">
-        <h1>Conclusion</h1>
+        <h1>Conclusions</h1>
         <p>
-          This project demonstrated the application of machine learning
-          techniques to predict user expertise levels based on Stack Overflow
-          profile attributes. The primary objective was to classify users as
-          either Low or High Expertise by leveraging activity-based features
-          such as reputation metrics, badge counts, and account longevity. A
-          structured methodology involving data preprocessing, model training,
-          and evaluation ensured that the outcomes were both reliable and
-          generalizable.
+          Understanding expertise levels based on user profile data requires
+          careful selection of machine learning models and thoughtful evaluation
+          strategies. This study explored a variety of algorithms, including
+          Naive Bayes classifiers, Decision Trees, Logistic Regression, Support
+          Vector Machines (SVMs), and ensemble learning techniques. Each model
+          offered different strengths and weaknesses when predicting user
+          expertise based on historical and behavioral attributes.
         </p>
 
         <p>
-          Multiple machine learning models, including Decision Trees, Logistic
-          Regression, Support Vector Machines (SVMs), and Ensemble Methods, were
-          implemented and assessed. Each model was carefully evaluated using
-          consistent train-test splits and standardized preprocessing pipelines
-          to ensure a fair comparison. Results indicated that while baseline
-          models such as Decision Trees and Logistic Regression provided strong
-          interpretability, ensemble models delivered superior predictive
-          performance.
+          Initial experiments using Naive Bayes models demonstrated modest
+          performance. Models such as Multinomial Naive Bayes and Categorical
+          Naive Bayes performed relatively better by correctly classifying users
+          at the two ends of the expertise spectrum—Beginners and Experts.
+          However, these models faced challenges in accurately identifying
+          Intermediate and Advanced users, which limited their overall
+          effectiveness for a multi-class expertise prediction task.
         </p>
 
+        <p>
+          Decision Tree models built using GINI impurity and Entropy criteria
+          revealed similar trends. Trees based on features like badge counts
+          achieved reasonable accuracy but exhibited difficulty in separating
+          mid-level expertise categories. Although Decision Trees are inherently
+          interpretable and intuitive, the shallow depth constraint and feature
+          dependency impacted their ability to capture deeper patterns in user
+          behavior and profile metrics.
+        </p>
         <img
-          src="Website/assets/ensemble_structure.png"
-          alt="Ensemble Structure"
+          src="Website/assets/conclusion.png"
+          alt="Akhila Annireddy"
+          class="profile-image2"
+        />
+        <p>
+          Logistic Regression and SVM models provided a clear improvement in
+          classification outcomes. Logistic Regression achieved strong balance
+          between precision and recall across Low and High Expertise classes,
+          offering dependable baseline performance. Support Vector Machines,
+          particularly those utilizing the Radial Basis Function (RBF) kernel,
+          demonstrated enhanced capability in modeling complex, non-linear
+          separations between expertise groups, leading to further gains in
+          predictive accuracy.
+        </p>
+
+        <p>
+          Ensemble learning approaches significantly elevated model performance.
+          Techniques like Random Forest, AdaBoost, and XGBoost aggregated the
+          predictions of multiple simpler models to produce more stable and
+          accurate outcomes. Among these, XGBoost achieved the highest accuracy,
+          demonstrating the value of iterative boosting strategies that
+          emphasize harder-to-classify examples during training.
+        </p>
+
+        <p>
+          The results across all modeling approaches clearly indicated that
+          combining multiple models and focusing on error correction leads to
+          more robust expertise classification. Ensemble methods successfully
+          addressed issues such as class imbalance and feature interactions that
+          simpler models struggled to capture. In particular, gradient boosting
+          frameworks consistently delivered high precision and recall across
+          different expertise levels, highlighting their effectiveness in
+          complex prediction tasks.
+        </p>
+        <img
+          src="Website/assets/all_model_comp.png"
+          alt="Akhila Annireddy"
           class="profile-image"
         />
 
         <p>
-          Among the ensemble techniques tested, XGBoost achieved the highest
-          classification accuracy of approximately 75.63%, followed closely by
-          Random Forest and AdaBoost. XGBoost demonstrated strong precision and
-          recall across both classes, highlighting its robustness in binary
-          classification tasks where class distributions are relatively
-          balanced. The use of ensemble methods not only improved overall
-          performance but also reduced model variance and enhanced
-          generalization to unseen data.
+          Overall, the analysis underscores the importance of comprehensive data
+          preprocessing, model diversity, and rigorous evaluation for successful
+          machine learning applications. Models must be selected and tuned not
+          only based on training accuracy but also on their ability to
+          generalize to unseen data. Ensemble methods emerged as the strongest
+          candidates for real-world implementation, offering both resilience and
+          superior predictive capabilities.
         </p>
 
         <p>
-          A key takeaway from this project was the critical importance of
-          comprehensive data preparation. Removing irrelevant features,
-          addressing missing values, encoding categorical variables, and
-          applying feature scaling were essential steps that significantly
-          contributed to model stability and accuracy. Furthermore, maintaining
-          stratified sampling during the train-test split preserved class
-          distributions and allowed for more accurate performance evaluation
-          across different user expertise levels.
+          Future work could involve further optimizing hyperparameters for
+          ensemble models, engineering additional features related to user
+          activity patterns, and exploring hybrid models that combine deep
+          learning with traditional machine learning frameworks. Continued
+          improvements in model generalization and interpretability will ensure
+          better user expertise prediction and support more intelligent system
+          design.
         </p>
-
-        <p>
-          The comparative analysis of different algorithms highlighted the
-          strengths and trade-offs of each approach. While simpler models
-          offered faster training times and ease of interpretation, more complex
-          ensemble models provided the necessary sophistication to capture
-          nuanced patterns in the data. Kernel-based SVMs, particularly using
-          the RBF kernel, also demonstrated competitive performance but required
-          careful tuning of hyperparameters.
-        </p>
-
-        <img
-          src="Website/assets/ensemble_accuracy_chart.png"
-          alt="Ensemble Accuracy Chart"
-          class="profile-image"
-        />
-
-        <p>
-          In conclusion, this project underscores the value of ensemble learning
-          and methodical data preprocessing in achieving high-performing machine
-          learning solutions. Future work may involve extending the feature set
-          with additional user behavioral metrics, performing hyperparameter
-          optimization, and exploring more advanced ensemble frameworks such as
-          stacking or blended models. The results validate that a rigorous,
-          end-to-end pipeline from data preparation to model evaluation is
-          critical for developing reliable and scalable predictive systems.
-        </p>
-        <h3>Model Accuracy Comparison</h3>
-        <img
-          class="profile-image"
-          src="Website/assets/ensemble_accuracy_chart.png"
-          alt="Ensemble Accuracy Chart"
-        />
       </section>
       <section id="aboutme" class="page-section">
         <h1>About</h1>
